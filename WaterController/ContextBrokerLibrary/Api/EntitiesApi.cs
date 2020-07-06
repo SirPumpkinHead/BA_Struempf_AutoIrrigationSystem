@@ -178,7 +178,7 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>RetrieveEntityResponse</returns>
-        RetrieveEntityResponse RetrieveEntity(string entityId, string type = null, string attrs = null,
+        RetrieveBedEntityResponse RetrieveEntity(string entityId, string type = null, string attrs = null,
             string metadata = null, string options = null);
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>ApiResponse of RetrieveEntityResponse</returns>
-        ApiResponse<RetrieveEntityResponse> RetrieveEntityWithHttpInfo(string entityId, string type = null,
+        ApiResponse<RetrieveBedEntityResponse> RetrieveEntityWithHttpInfo(string entityId, string type = null,
             string attrs = null, string metadata = null, string options = null);
 
         /// <summary>
@@ -454,7 +454,7 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of RetrieveEntityResponse</returns>
-        System.Threading.Tasks.Task<RetrieveEntityResponse> RetrieveEntityAsync(string entityId, string type = null,
+        System.Threading.Tasks.Task<RetrieveBedEntityResponse> RetrieveBedEntityAsync(string entityId, string type = null,
             string attrs = null, string metadata = null, string options = null);
 
         /// <summary>
@@ -470,7 +470,7 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of ApiResponse (RetrieveEntityResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<RetrieveEntityResponse>> RetrieveEntityAsyncWithHttpInfo(
+        System.Threading.Tasks.Task<ApiResponse<RetrieveBedEntityResponse>> RetrieveEntityAsyncWithHttpInfo(
             string entityId, string type = null, string attrs = null, string metadata = null, string options = null);
 
         /// <summary>
@@ -1550,10 +1550,10 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>RetrieveEntityResponse</returns>
-        public RetrieveEntityResponse RetrieveEntity(string entityId, string type = null, string attrs = null,
+        public RetrieveBedEntityResponse RetrieveEntity(string entityId, string type = null, string attrs = null,
             string metadata = null, string options = null)
         {
-            ApiResponse<RetrieveEntityResponse> localVarResponse =
+            ApiResponse<RetrieveBedEntityResponse> localVarResponse =
                 RetrieveEntityWithHttpInfo(entityId, type, attrs, metadata, options);
             return localVarResponse.Data;
         }
@@ -1568,7 +1568,7 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>ApiResponse of RetrieveEntityResponse</returns>
-        public ApiResponse<RetrieveEntityResponse> RetrieveEntityWithHttpInfo(string entityId, string type = null,
+        public ApiResponse<RetrieveBedEntityResponse> RetrieveEntityWithHttpInfo(string entityId, string type = null,
             string attrs = null, string metadata = null, string options = null)
         {
             // verify the required parameter 'entityId' is set
@@ -1631,10 +1631,10 @@ namespace ContextBrokerLibrary.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<RetrieveEntityResponse>(localVarStatusCode,
+            return new ApiResponse<RetrieveBedEntityResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (RetrieveEntityResponse) this.Configuration.ApiClient.Deserialize(localVarResponse,
-                    typeof(RetrieveEntityResponse)));
+                (RetrieveBedEntityResponse) this.Configuration.ApiClient.Deserialize(localVarResponse,
+                    typeof(RetrieveBedEntityResponse)));
         }
 
         /// <summary>
@@ -1647,10 +1647,10 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of RetrieveEntityResponse</returns>
-        public async System.Threading.Tasks.Task<RetrieveEntityResponse> RetrieveEntityAsync(string entityId,
+        public async System.Threading.Tasks.Task<RetrieveBedEntityResponse> RetrieveBedEntityAsync(string entityId,
             string type = null, string attrs = null, string metadata = null, string options = null)
         {
-            ApiResponse<RetrieveEntityResponse> localVarResponse =
+            ApiResponse<RetrieveBedEntityResponse> localVarResponse =
                 await RetrieveEntityAsyncWithHttpInfo(entityId, type, attrs, metadata, options);
             return localVarResponse.Data;
         }
@@ -1665,7 +1665,7 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of ApiResponse (RetrieveEntityResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<RetrieveEntityResponse>> RetrieveEntityAsyncWithHttpInfo(
+        public async System.Threading.Tasks.Task<ApiResponse<RetrieveBedEntityResponse>> RetrieveEntityAsyncWithHttpInfo(
             string entityId, string type = null, string attrs = null, string metadata = null, string options = null)
         {
             // verify the required parameter 'entityId' is set
@@ -1729,10 +1729,10 @@ namespace ContextBrokerLibrary.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<RetrieveEntityResponse>(localVarStatusCode,
+            return new ApiResponse<RetrieveBedEntityResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (RetrieveEntityResponse) this.Configuration.ApiClient.Deserialize(localVarResponse,
-                    typeof(RetrieveEntityResponse)));
+                (RetrieveBedEntityResponse) this.Configuration.ApiClient.Deserialize(localVarResponse,
+                    typeof(RetrieveBedEntityResponse)));
         }
 
         /// <summary>

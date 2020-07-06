@@ -22,17 +22,17 @@ namespace ContextBrokerLibrary.Model
     /// RetrieveEntityResponse
     /// </summary>
     [DataContract]
-    public class RetrieveEntityResponse : IEquatable<RetrieveEntityResponse>, IValidatableObject
+    public class RetrieveBedEntityResponse : IEquatable<RetrieveBedEntityResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RetrieveEntityResponse" /> class.
+        /// Initializes a new instance of the <see cref="RetrieveBedEntityResponse" /> class.
         /// </summary>
         /// <param name="type">type (required).</param>
         /// <param name="id">id (required).</param>
         /// <param name="temperature">temperature (required).</param>
         /// <param name="humidity">humidity (required).</param>
         /// <param name="location">location (required).</param>
-        public RetrieveEntityResponse(string type = default, string id = default,
+        public RetrieveBedEntityResponse(string type = default, string id = default,
             Object temperature = default, Object humidity = default, Object location = default)
         {
             // to ensure "type" is required (not null)
@@ -58,23 +58,8 @@ namespace ContextBrokerLibrary.Model
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
-        /// <summary>
-        /// Gets or Sets Temperature
-        /// </summary>
-        [DataMember(Name = "temperature", EmitDefaultValue = false)]
-        public Object Temperature { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Humidity
-        /// </summary>
-        [DataMember(Name = "humidity", EmitDefaultValue = false)]
-        public Object Humidity { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Location
-        /// </summary>
-        [DataMember(Name = "location", EmitDefaultValue = false)]
-        public Object Location { get; set; }
+        [DataMember(Name = "name", EmitDefaultValue = false)]
+        public Text Name { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -86,9 +71,6 @@ namespace ContextBrokerLibrary.Model
             sb.Append("class RetrieveEntityResponse {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Temperature: ").Append(Temperature).Append("\n");
-            sb.Append("  Humidity: ").Append(Humidity).Append("\n");
-            sb.Append("  Location: ").Append(Location).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -109,7 +91,7 @@ namespace ContextBrokerLibrary.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as RetrieveEntityResponse);
+            return this.Equals(input as RetrieveBedEntityResponse);
         }
 
         /// <summary>
@@ -117,7 +99,7 @@ namespace ContextBrokerLibrary.Model
         /// </summary>
         /// <param name="input">Instance of RetrieveEntityResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(RetrieveEntityResponse input)
+        public bool Equals(RetrieveBedEntityResponse input)
         {
             if (input == null)
                 return false;
@@ -132,21 +114,6 @@ namespace ContextBrokerLibrary.Model
                     this.Id == input.Id ||
                     (this.Id != null &&
                      this.Id.Equals(input.Id))
-                ) &&
-                (
-                    this.Temperature == input.Temperature ||
-                    (this.Temperature != null &&
-                     this.Temperature.Equals(input.Temperature))
-                ) &&
-                (
-                    this.Humidity == input.Humidity ||
-                    (this.Humidity != null &&
-                     this.Humidity.Equals(input.Humidity))
-                ) &&
-                (
-                    this.Location == input.Location ||
-                    (this.Location != null &&
-                     this.Location.Equals(input.Location))
                 );
         }
 
@@ -163,12 +130,6 @@ namespace ContextBrokerLibrary.Model
                     hashCode = hashCode * 59 + this.Type.GetHashCode();
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.Temperature != null)
-                    hashCode = hashCode * 59 + this.Temperature.GetHashCode();
-                if (this.Humidity != null)
-                    hashCode = hashCode * 59 + this.Humidity.GetHashCode();
-                if (this.Location != null)
-                    hashCode = hashCode * 59 + this.Location.GetHashCode();
                 return hashCode;
             }
         }
