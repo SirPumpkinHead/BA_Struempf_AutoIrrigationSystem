@@ -22,7 +22,7 @@ namespace ContextBrokerLibrary.Model
     /// RetrieveEntityResponse
     /// </summary>
     [DataContract]
-    public partial class RetrieveEntityResponse : IEquatable<RetrieveEntityResponse>, IValidatableObject
+    public class RetrieveEntityResponse : IEquatable<RetrieveEntityResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RetrieveEntityResponse" /> class.
@@ -32,30 +32,18 @@ namespace ContextBrokerLibrary.Model
         /// <param name="temperature">temperature (required).</param>
         /// <param name="humidity">humidity (required).</param>
         /// <param name="location">location (required).</param>
-        public RetrieveEntityResponse(string type = default(string), string id = default(string),
-            Object temperature = default(Object), Object humidity = default(Object), Object location = default(Object))
+        public RetrieveEntityResponse(string type = default, string id = default,
+            Object temperature = default, Object humidity = default, Object location = default)
         {
             // to ensure "type" is required (not null)
-            if (type == null)
-            {
-                throw new InvalidDataException(
-                    "type is a required property for RetrieveEntityResponse and cannot be null");
-            }
-            else
-            {
-                this.Type = type;
-            }
+
+            Type = type ?? throw new InvalidDataException(
+                "type is a required property for RetrieveEntityResponse and cannot be null");
 
             // to ensure "id" is required (not null)
-            if (id == null)
-            {
-                throw new InvalidDataException(
-                    "id is a required property for RetrieveEntityResponse and cannot be null");
-            }
-            else
-            {
-                this.Id = id;
-            }
+
+            Id = id ?? throw new InvalidDataException(
+                "id is a required property for RetrieveEntityResponse and cannot be null");
         }
 
         /// <summary>

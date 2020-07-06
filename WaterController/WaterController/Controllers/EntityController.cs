@@ -26,11 +26,29 @@ namespace WaterController.Controllers
 
             try
             {
-                return await _entityService.GetEntity(id);
+                return await _entityService.GetFlowerBed(id);
             }
             catch (ApiException e)
             {
                 _logger.LogWarning("({errorCode}) Failed to get entity with id {entityId} - {errorMessage}",
+                    e.ErrorCode, id, e.Message);
+
+                return StatusCode(e.ErrorCode);
+            }
+        }
+
+        [HttpGet("sensorReadings/{id}")]
+        public async Task<object> GetSensorReadings(string id)
+        {
+            _logger.LogInformation("Getting latest sensor readings for {entityId}", id);
+
+            try
+            {
+                return await _entityService.GetMoistureLevels(id);
+            }
+            catch (ApiException e)
+            {
+                _logger.LogWarning("({errorCode}) Failed to get readings for {entityId} - {errorMessage}",
                     e.ErrorCode, id, e.Message);
 
                 return StatusCode(e.ErrorCode);

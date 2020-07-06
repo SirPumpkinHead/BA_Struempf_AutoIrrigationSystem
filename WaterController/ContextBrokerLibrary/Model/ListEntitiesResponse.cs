@@ -22,41 +22,27 @@ namespace ContextBrokerLibrary.Model
     /// ListEntitiesResponse
     /// </summary>
     [DataContract]
-    public partial class ListEntitiesResponse : IEquatable<ListEntitiesResponse>, IValidatableObject
+    public class ListEntitiesResponse : IEquatable<ListEntitiesResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ListEntitiesResponse" /> class.
         /// </summary>
         /// <param name="type">type (required).</param>
         /// <param name="id">id (required).</param>
-        /// <param name="temperature">temperature.</param>
-        /// <param name="speed">speed.</param>
-        public ListEntitiesResponse(string type = default(string), string id = default(string),
-            Object temperature = default(Object), Object speed = default(Object))
+        /// <param name="moisture"></param>
+        public ListEntitiesResponse(string type = default, string id = default, Moisture moisture = default)
         {
             // to ensure "type" is required (not null)
-            if (type == null)
-            {
-                throw new InvalidDataException(
-                    "type is a required property for ListEntitiesResponse and cannot be null");
-            }
-            else
-            {
-                this.Type = type;
-            }
+
+            Type = type ?? throw new InvalidDataException(
+                "type is a required property for ListEntitiesResponse and cannot be null");
 
             // to ensure "id" is required (not null)
-            if (id == null)
-            {
-                throw new InvalidDataException("id is a required property for ListEntitiesResponse and cannot be null");
-            }
-            else
-            {
-                this.Id = id;
-            }
 
-            this.Temperature = temperature;
-            this.Speed = speed;
+            Id = id ?? throw new InvalidDataException(
+                "id is a required property for ListEntitiesResponse and cannot be null");
+
+            Moisture = moisture;
         }
 
         /// <summary>
@@ -71,17 +57,8 @@ namespace ContextBrokerLibrary.Model
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
-        /// <summary>
-        /// Gets or Sets Temperature
-        /// </summary>
-        [DataMember(Name = "temperature", EmitDefaultValue = false)]
-        public Object Temperature { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Speed
-        /// </summary>
-        [DataMember(Name = "speed", EmitDefaultValue = false)]
-        public Object Speed { get; set; }
+        [DataMember(Name = "moisture", EmitDefaultValue = false)]
+        public Moisture Moisture { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -93,8 +70,7 @@ namespace ContextBrokerLibrary.Model
             sb.Append("class ListEntitiesResponse {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Temperature: ").Append(Temperature).Append("\n");
-            sb.Append("  Speed: ").Append(Speed).Append("\n");
+            sb.Append("  Moisture: ").Append(Moisture).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -138,16 +114,6 @@ namespace ContextBrokerLibrary.Model
                     this.Id == input.Id ||
                     (this.Id != null &&
                      this.Id.Equals(input.Id))
-                ) &&
-                (
-                    this.Temperature == input.Temperature ||
-                    (this.Temperature != null &&
-                     this.Temperature.Equals(input.Temperature))
-                ) &&
-                (
-                    this.Speed == input.Speed ||
-                    (this.Speed != null &&
-                     this.Speed.Equals(input.Speed))
                 );
         }
 
@@ -164,10 +130,6 @@ namespace ContextBrokerLibrary.Model
                     hashCode = hashCode * 59 + this.Type.GetHashCode();
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.Temperature != null)
-                    hashCode = hashCode * 59 + this.Temperature.GetHashCode();
-                if (this.Speed != null)
-                    hashCode = hashCode * 59 + this.Speed.GetHashCode();
                 return hashCode;
             }
         }

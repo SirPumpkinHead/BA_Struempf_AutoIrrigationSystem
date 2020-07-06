@@ -22,9 +22,10 @@ namespace ContextBrokerLibrary.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-        public interface IEntitiesApi : IApiAccessor
+    public interface IEntitiesApi : IApiAccessor
     {
         #region Synchronous Operations
+
         /// <summary>
         /// Create Entity
         /// </summary>
@@ -36,7 +37,7 @@ namespace ContextBrokerLibrary.Api
         /// <param name="contentType"></param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns></returns>
-        void CreateEntity (CreateEntityRequest body, string contentType, string options = null);
+        void CreateEntity(CreateEntityRequest body, string contentType, string options = null);
 
         /// <summary>
         /// Create Entity
@@ -49,7 +50,9 @@ namespace ContextBrokerLibrary.Api
         /// <param name="contentType"></param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> CreateEntityWithHttpInfo (CreateEntityRequest body, string contentType, string options = null);
+        ApiResponse<Object> CreateEntityWithHttpInfo(CreateEntityRequest body, string contentType,
+            string options = null);
+
         /// <summary>
         /// List Entities
         /// </summary>
@@ -73,7 +76,10 @@ namespace ContextBrokerLibrary.Api
         /// <param name="orderBy">Criteria for ordering results. See \&quot;Ordering Results\&quot; section for details. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>List&lt;ListEntitiesResponse&gt;</returns>
-        List<ListEntitiesResponse> ListEntities (string id = null, string type = null, string idPattern = null, string typePattern = null, string q = null, string mq = null, string georel = null, string geometry = null, string coords = null, double? limit = null, double? offset = null, string attrs = null, string metadata = null, string orderBy = null, string options = null);
+        List<ListEntitiesResponse> ListEntities(string id = null, string type = null, string idPattern = null,
+            string typePattern = null, string q = null, string mq = null, string georel = null, string geometry = null,
+            string coords = null, double? limit = null, double? offset = null, string attrs = null,
+            string metadata = null, string orderBy = null, string options = null);
 
         /// <summary>
         /// List Entities
@@ -98,7 +104,11 @@ namespace ContextBrokerLibrary.Api
         /// <param name="orderBy">Criteria for ordering results. See \&quot;Ordering Results\&quot; section for details. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>ApiResponse of List&lt;ListEntitiesResponse&gt;</returns>
-        ApiResponse<List<ListEntitiesResponse>> ListEntitiesWithHttpInfo (string id = null, string type = null, string idPattern = null, string typePattern = null, string q = null, string mq = null, string georel = null, string geometry = null, string coords = null, double? limit = null, double? offset = null, string attrs = null, string metadata = null, string orderBy = null, string options = null);
+        ApiResponse<List<ListEntitiesResponse>> ListEntitiesWithHttpInfo(string id = null, string type = null,
+            string idPattern = null, string typePattern = null, string q = null, string mq = null, string georel = null,
+            string geometry = null, string coords = null, double? limit = null, double? offset = null,
+            string attrs = null, string metadata = null, string orderBy = null, string options = null);
+
         /// <summary>
         /// Remove Entity
         /// </summary>
@@ -109,7 +119,7 @@ namespace ContextBrokerLibrary.Api
         /// <param name="entityId">Id of the entity to be deleted</param>
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <returns></returns>
-        void RemoveEntity (string entityId, string type = null);
+        void RemoveEntity(string entityId, string type = null);
 
         /// <summary>
         /// Remove Entity
@@ -121,21 +131,7 @@ namespace ContextBrokerLibrary.Api
         /// <param name="entityId">Id of the entity to be deleted</param>
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> RemoveEntityWithHttpInfo (string entityId, string type = null);
-        /// <summary>
-        /// Replace all entity attributes
-        /// </summary>
-        /// <remarks>
-        /// The request payload is an object representing the new entity attributes. The object follows the JSON entity representation format (described in a \&quot;JSON Entity Representation\&quot; above), except that &#x60;id&#x60; and &#x60;type&#x60; are not allowed. The attributes previously existing in the entity are removed and replaced by the ones in the request. Response: * Successful operation uses 204 No Content * Errors use a non-2xx and (optionally) an error payload. See subsection on \&quot;Error Responses\&quot; for   more details.
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body"></param>
-        /// <param name="contentType"></param>
-        /// <param name="entityId">Id of the entity in question.</param>
-        /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
-        /// <param name="options">Operations options (optional)</param>
-        /// <returns></returns>
-        void ReplaceAllEntityAttributes (ReplaceAllEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null);
+        ApiResponse<Object> RemoveEntityWithHttpInfo(string entityId, string type = null);
 
         /// <summary>
         /// Replace all entity attributes
@@ -149,8 +145,26 @@ namespace ContextBrokerLibrary.Api
         /// <param name="entityId">Id of the entity in question.</param>
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
+        /// <returns></returns>
+        void ReplaceAllEntityAttributes(ReplaceAllEntityAttributesRequest body, string contentType, string entityId,
+            string type = null, string options = null);
+
+        /// <summary>
+        /// Replace all entity attributes
+        /// </summary>
+        /// <remarks>
+        /// The request payload is an object representing the new entity attributes. The object follows the JSON entity representation format (described in a \&quot;JSON Entity Representation\&quot; above), except that &#x60;id&#x60; and &#x60;type&#x60; are not allowed. The attributes previously existing in the entity are removed and replaced by the ones in the request. Response: * Successful operation uses 204 No Content * Errors use a non-2xx and (optionally) an error payload. See subsection on \&quot;Error Responses\&quot; for   more details.
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body"></param>
+        /// <param name="contentType"></param>
+        /// <param name="entityId">Id of the entity in question.</param>
+        /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
+        /// <param name="options">Operations options (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ReplaceAllEntityAttributesWithHttpInfo (ReplaceAllEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null);
+        ApiResponse<Object> ReplaceAllEntityAttributesWithHttpInfo(ReplaceAllEntityAttributesRequest body,
+            string contentType, string entityId, string type = null, string options = null);
+
         /// <summary>
         /// Retrieve Entity
         /// </summary>
@@ -164,7 +178,8 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>RetrieveEntityResponse</returns>
-        RetrieveEntityResponse RetrieveEntity (string entityId, string type = null, string attrs = null, string metadata = null, string options = null);
+        RetrieveEntityResponse RetrieveEntity(string entityId, string type = null, string attrs = null,
+            string metadata = null, string options = null);
 
         /// <summary>
         /// Retrieve Entity
@@ -179,7 +194,9 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>ApiResponse of RetrieveEntityResponse</returns>
-        ApiResponse<RetrieveEntityResponse> RetrieveEntityWithHttpInfo (string entityId, string type = null, string attrs = null, string metadata = null, string options = null);
+        ApiResponse<RetrieveEntityResponse> RetrieveEntityWithHttpInfo(string entityId, string type = null,
+            string attrs = null, string metadata = null, string options = null);
+
         /// <summary>
         /// Retrieve Entity Attributes
         /// </summary>
@@ -193,7 +210,8 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>RetrieveEntityAttributesResponse</returns>
-        RetrieveEntityAttributesResponse RetrieveEntityAttributes (string entityId, string type = null, string attrs = null, string metadata = null, string options = null);
+        RetrieveEntityAttributesResponse RetrieveEntityAttributes(string entityId, string type = null,
+            string attrs = null, string metadata = null, string options = null);
 
         /// <summary>
         /// Retrieve Entity Attributes
@@ -208,7 +226,9 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>ApiResponse of RetrieveEntityAttributesResponse</returns>
-        ApiResponse<RetrieveEntityAttributesResponse> RetrieveEntityAttributesWithHttpInfo (string entityId, string type = null, string attrs = null, string metadata = null, string options = null);
+        ApiResponse<RetrieveEntityAttributesResponse> RetrieveEntityAttributesWithHttpInfo(string entityId,
+            string type = null, string attrs = null, string metadata = null, string options = null);
+
         /// <summary>
         /// Update Existing Entity Attributes
         /// </summary>
@@ -222,7 +242,8 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns></returns>
-        void UpdateExistingEntityAttributes (UpdateExistingEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null);
+        void UpdateExistingEntityAttributes(UpdateExistingEntityAttributesRequest body, string contentType,
+            string entityId, string type = null, string options = null);
 
         /// <summary>
         /// Update Existing Entity Attributes
@@ -237,7 +258,9 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> UpdateExistingEntityAttributesWithHttpInfo (UpdateExistingEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null);
+        ApiResponse<Object> UpdateExistingEntityAttributesWithHttpInfo(UpdateExistingEntityAttributesRequest body,
+            string contentType, string entityId, string type = null, string options = null);
+
         /// <summary>
         /// Update or Append Entity Attributes
         /// </summary>
@@ -251,7 +274,8 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns></returns>
-        void UpdateOrAppendEntityAttributes (UpdateOrAppendEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null);
+        void UpdateOrAppendEntityAttributes(UpdateOrAppendEntityAttributesRequest body, string contentType,
+            string entityId, string type = null, string options = null);
 
         /// <summary>
         /// Update or Append Entity Attributes
@@ -266,9 +290,13 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> UpdateOrAppendEntityAttributesWithHttpInfo (UpdateOrAppendEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null);
+        ApiResponse<Object> UpdateOrAppendEntityAttributesWithHttpInfo(UpdateOrAppendEntityAttributesRequest body,
+            string contentType, string entityId, string type = null, string options = null);
+
         #endregion Synchronous Operations
+
         #region Asynchronous Operations
+
         /// <summary>
         /// Create Entity
         /// </summary>
@@ -280,7 +308,8 @@ namespace ContextBrokerLibrary.Api
         /// <param name="contentType"></param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task CreateEntityAsync (CreateEntityRequest body, string contentType, string options = null);
+        System.Threading.Tasks.Task CreateEntityAsync(CreateEntityRequest body, string contentType,
+            string options = null);
 
         /// <summary>
         /// Create Entity
@@ -293,7 +322,9 @@ namespace ContextBrokerLibrary.Api
         /// <param name="contentType"></param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> CreateEntityAsyncWithHttpInfo (CreateEntityRequest body, string contentType, string options = null);
+        System.Threading.Tasks.Task<ApiResponse<Object>> CreateEntityAsyncWithHttpInfo(CreateEntityRequest body,
+            string contentType, string options = null);
+
         /// <summary>
         /// List Entities
         /// </summary>
@@ -317,7 +348,11 @@ namespace ContextBrokerLibrary.Api
         /// <param name="orderBy">Criteria for ordering results. See \&quot;Ordering Results\&quot; section for details. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of List&lt;ListEntitiesResponse&gt;</returns>
-        System.Threading.Tasks.Task<List<ListEntitiesResponse>> ListEntitiesAsync (string id = null, string type = null, string idPattern = null, string typePattern = null, string q = null, string mq = null, string georel = null, string geometry = null, string coords = null, double? limit = null, double? offset = null, string attrs = null, string metadata = null, string orderBy = null, string options = null);
+        System.Threading.Tasks.Task<List<ListEntitiesResponse>> ListEntitiesAsync(string id = null,
+            string type = null,
+            string idPattern = null, string typePattern = null, string q = null, string mq = null, string georel = null,
+            string geometry = null, string coords = null, double? limit = null, double? offset = null,
+            string attrs = null, string metadata = null, string orderBy = null, string options = null);
 
         /// <summary>
         /// List Entities
@@ -342,7 +377,12 @@ namespace ContextBrokerLibrary.Api
         /// <param name="orderBy">Criteria for ordering results. See \&quot;Ordering Results\&quot; section for details. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;ListEntitiesResponse&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<ListEntitiesResponse>>> ListEntitiesAsyncWithHttpInfo (string id = null, string type = null, string idPattern = null, string typePattern = null, string q = null, string mq = null, string georel = null, string geometry = null, string coords = null, double? limit = null, double? offset = null, string attrs = null, string metadata = null, string orderBy = null, string options = null);
+        System.Threading.Tasks.Task<ApiResponse<List<ListEntitiesResponse>>> ListEntitiesAsyncWithHttpInfo(
+            string id = null, string type = null, string idPattern = null, string typePattern = null, string q = null,
+            string mq = null, string georel = null, string geometry = null, string coords = null, double? limit = null,
+            double? offset = null, string attrs = null, string metadata = null, string orderBy = null,
+            string options = null);
+
         /// <summary>
         /// Remove Entity
         /// </summary>
@@ -353,7 +393,7 @@ namespace ContextBrokerLibrary.Api
         /// <param name="entityId">Id of the entity to be deleted</param>
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task RemoveEntityAsync (string entityId, string type = null);
+        System.Threading.Tasks.Task RemoveEntityAsync(string entityId, string type = null);
 
         /// <summary>
         /// Remove Entity
@@ -365,21 +405,8 @@ namespace ContextBrokerLibrary.Api
         /// <param name="entityId">Id of the entity to be deleted</param>
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> RemoveEntityAsyncWithHttpInfo (string entityId, string type = null);
-        /// <summary>
-        /// Replace all entity attributes
-        /// </summary>
-        /// <remarks>
-        /// The request payload is an object representing the new entity attributes. The object follows the JSON entity representation format (described in a \&quot;JSON Entity Representation\&quot; above), except that &#x60;id&#x60; and &#x60;type&#x60; are not allowed. The attributes previously existing in the entity are removed and replaced by the ones in the request. Response: * Successful operation uses 204 No Content * Errors use a non-2xx and (optionally) an error payload. See subsection on \&quot;Error Responses\&quot; for   more details.
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body"></param>
-        /// <param name="contentType"></param>
-        /// <param name="entityId">Id of the entity in question.</param>
-        /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
-        /// <param name="options">Operations options (optional)</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ReplaceAllEntityAttributesAsync (ReplaceAllEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null);
+        System.Threading.Tasks.Task<ApiResponse<Object>> RemoveEntityAsyncWithHttpInfo(string entityId,
+            string type = null);
 
         /// <summary>
         /// Replace all entity attributes
@@ -393,8 +420,27 @@ namespace ContextBrokerLibrary.Api
         /// <param name="entityId">Id of the entity in question.</param>
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task ReplaceAllEntityAttributesAsync(ReplaceAllEntityAttributesRequest body,
+            string contentType, string entityId, string type = null, string options = null);
+
+        /// <summary>
+        /// Replace all entity attributes
+        /// </summary>
+        /// <remarks>
+        /// The request payload is an object representing the new entity attributes. The object follows the JSON entity representation format (described in a \&quot;JSON Entity Representation\&quot; above), except that &#x60;id&#x60; and &#x60;type&#x60; are not allowed. The attributes previously existing in the entity are removed and replaced by the ones in the request. Response: * Successful operation uses 204 No Content * Errors use a non-2xx and (optionally) an error payload. See subsection on \&quot;Error Responses\&quot; for   more details.
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body"></param>
+        /// <param name="contentType"></param>
+        /// <param name="entityId">Id of the entity in question.</param>
+        /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
+        /// <param name="options">Operations options (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ReplaceAllEntityAttributesAsyncWithHttpInfo (ReplaceAllEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null);
+        System.Threading.Tasks.Task<ApiResponse<Object>> ReplaceAllEntityAttributesAsyncWithHttpInfo(
+            ReplaceAllEntityAttributesRequest body, string contentType, string entityId, string type = null,
+            string options = null);
+
         /// <summary>
         /// Retrieve Entity
         /// </summary>
@@ -408,7 +454,8 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of RetrieveEntityResponse</returns>
-        System.Threading.Tasks.Task<RetrieveEntityResponse> RetrieveEntityAsync (string entityId, string type = null, string attrs = null, string metadata = null, string options = null);
+        System.Threading.Tasks.Task<RetrieveEntityResponse> RetrieveEntityAsync(string entityId, string type = null,
+            string attrs = null, string metadata = null, string options = null);
 
         /// <summary>
         /// Retrieve Entity
@@ -423,7 +470,9 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of ApiResponse (RetrieveEntityResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<RetrieveEntityResponse>> RetrieveEntityAsyncWithHttpInfo (string entityId, string type = null, string attrs = null, string metadata = null, string options = null);
+        System.Threading.Tasks.Task<ApiResponse<RetrieveEntityResponse>> RetrieveEntityAsyncWithHttpInfo(
+            string entityId, string type = null, string attrs = null, string metadata = null, string options = null);
+
         /// <summary>
         /// Retrieve Entity Attributes
         /// </summary>
@@ -437,7 +486,8 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of RetrieveEntityAttributesResponse</returns>
-        System.Threading.Tasks.Task<RetrieveEntityAttributesResponse> RetrieveEntityAttributesAsync (string entityId, string type = null, string attrs = null, string metadata = null, string options = null);
+        System.Threading.Tasks.Task<RetrieveEntityAttributesResponse> RetrieveEntityAttributesAsync(string entityId,
+            string type = null, string attrs = null, string metadata = null, string options = null);
 
         /// <summary>
         /// Retrieve Entity Attributes
@@ -452,7 +502,10 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of ApiResponse (RetrieveEntityAttributesResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<RetrieveEntityAttributesResponse>> RetrieveEntityAttributesAsyncWithHttpInfo (string entityId, string type = null, string attrs = null, string metadata = null, string options = null);
+        System.Threading.Tasks.Task<ApiResponse<RetrieveEntityAttributesResponse>>
+            RetrieveEntityAttributesAsyncWithHttpInfo(string entityId, string type = null, string attrs = null,
+                string metadata = null, string options = null);
+
         /// <summary>
         /// Update Existing Entity Attributes
         /// </summary>
@@ -466,7 +519,8 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task UpdateExistingEntityAttributesAsync (UpdateExistingEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null);
+        System.Threading.Tasks.Task UpdateExistingEntityAttributesAsync(UpdateExistingEntityAttributesRequest body,
+            string contentType, string entityId, string type = null, string options = null);
 
         /// <summary>
         /// Update Existing Entity Attributes
@@ -481,7 +535,10 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateExistingEntityAttributesAsyncWithHttpInfo (UpdateExistingEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null);
+        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateExistingEntityAttributesAsyncWithHttpInfo(
+            UpdateExistingEntityAttributesRequest body, string contentType, string entityId, string type = null,
+            string options = null);
+
         /// <summary>
         /// Update or Append Entity Attributes
         /// </summary>
@@ -495,7 +552,8 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task UpdateOrAppendEntityAttributesAsync (UpdateOrAppendEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null);
+        System.Threading.Tasks.Task UpdateOrAppendEntityAttributesAsync(UpdateOrAppendEntityAttributesRequest body,
+            string contentType, string entityId, string type = null, string options = null);
 
         /// <summary>
         /// Update or Append Entity Attributes
@@ -510,14 +568,17 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateOrAppendEntityAttributesAsyncWithHttpInfo (UpdateOrAppendEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null);
+        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateOrAppendEntityAttributesAsyncWithHttpInfo(
+            UpdateOrAppendEntityAttributesRequest body, string contentType, string entityId, string type = null,
+            string options = null);
+
         #endregion Asynchronous Operations
     }
 
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-        public partial class EntitiesApi : IEntitiesApi
+    public partial class EntitiesApi : IEntitiesApi
     {
         private ExceptionFactory _exceptionFactory = (name, response) => null;
 
@@ -527,7 +588,7 @@ namespace ContextBrokerLibrary.Api
         /// <returns></returns>
         public EntitiesApi(String basePath)
         {
-            this.Configuration = new Configuration { BasePath = basePath };
+            this.Configuration = new Configuration {BasePath = basePath};
 
             ExceptionFactory = Configuration.DefaultExceptionFactory;
         }
@@ -572,7 +633,8 @@ namespace ContextBrokerLibrary.Api
         /// Sets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
+        [Obsolete(
+            "SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
         public void SetBasePath(String basePath)
         {
             // do nothing
@@ -582,7 +644,7 @@ namespace ContextBrokerLibrary.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public Configuration Configuration {get; set;}
+        public Configuration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
@@ -595,6 +657,7 @@ namespace ContextBrokerLibrary.Api
                 {
                     throw new InvalidOperationException("Multicast delegate for ExceptionFactory is unsupported.");
                 }
+
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
@@ -630,9 +693,9 @@ namespace ContextBrokerLibrary.Api
         /// <param name="contentType"></param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns></returns>
-        public void CreateEntity (CreateEntityRequest body, string contentType, string options = null)
+        public void CreateEntity(CreateEntityRequest body, string contentType, string options = null)
         {
-             CreateEntityWithHttpInfo(body, contentType, options);
+            CreateEntityWithHttpInfo(body, contentType, options);
         }
 
         /// <summary>
@@ -643,14 +706,16 @@ namespace ContextBrokerLibrary.Api
         /// <param name="contentType"></param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> CreateEntityWithHttpInfo (CreateEntityRequest body, string contentType, string options = null)
+        public ApiResponse<Object> CreateEntityWithHttpInfo(CreateEntityRequest body, string contentType,
+            string options = null)
         {
             // verify the required parameter 'body' is set
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling EntitiesApi->CreateEntity");
             // verify the required parameter 'contentType' is set
             if (contentType == null)
-                throw new ApiException(400, "Missing required parameter 'contentType' when calling EntitiesApi->CreateEntity");
+                throw new ApiException(400,
+                    "Missing required parameter 'contentType' when calling EntitiesApi->CreateEntity");
 
             var localVarPath = "/v2/entities";
             var localVarPathParams = new Dictionary<String, String>();
@@ -661,20 +726,28 @@ namespace ContextBrokerLibrary.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            String[] localVarHttpContentTypes = new String[]
+            {
                 "application/json"
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType =
+                this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            String[] localVarHttpHeaderAccepts = new String[]
+            {
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept =
+                this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (options != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
-            if (contentType != null) localVarHeaderParams.Add("Content-Type", this.Configuration.ApiClient.ParameterToString(contentType)); // header parameter
+            if (options != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
+            if (contentType != null)
+                localVarHeaderParams.Add("Content-Type",
+                    this.Configuration.ApiClient.ParameterToString(contentType)); // header parameter
             if (body != null && body.GetType() != typeof(byte[]))
             {
                 localVarPostBody = this.Configuration.ApiClient.Serialize(body); // http body (model) parameter
@@ -686,7 +759,8 @@ namespace ContextBrokerLibrary.Api
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
+                localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
@@ -710,10 +784,10 @@ namespace ContextBrokerLibrary.Api
         /// <param name="contentType"></param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task CreateEntityAsync (CreateEntityRequest body, string contentType, string options = null)
+        public async System.Threading.Tasks.Task CreateEntityAsync(CreateEntityRequest body, string contentType,
+            string options = null)
         {
-             await CreateEntityAsyncWithHttpInfo(body, contentType, options);
-
+            await CreateEntityAsyncWithHttpInfo(body, contentType, options);
         }
 
         /// <summary>
@@ -724,14 +798,16 @@ namespace ContextBrokerLibrary.Api
         /// <param name="contentType"></param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> CreateEntityAsyncWithHttpInfo (CreateEntityRequest body, string contentType, string options = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> CreateEntityAsyncWithHttpInfo(
+            CreateEntityRequest body, string contentType, string options = null)
         {
             // verify the required parameter 'body' is set
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling EntitiesApi->CreateEntity");
             // verify the required parameter 'contentType' is set
             if (contentType == null)
-                throw new ApiException(400, "Missing required parameter 'contentType' when calling EntitiesApi->CreateEntity");
+                throw new ApiException(400,
+                    "Missing required parameter 'contentType' when calling EntitiesApi->CreateEntity");
 
             var localVarPath = "/v2/entities";
             var localVarPathParams = new Dictionary<String, String>();
@@ -742,20 +818,28 @@ namespace ContextBrokerLibrary.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            String[] localVarHttpContentTypes = new String[]
+            {
                 "application/json"
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType =
+                this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            String[] localVarHttpHeaderAccepts = new String[]
+            {
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept =
+                this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (options != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
-            if (contentType != null) localVarHeaderParams.Add("Content-Type", this.Configuration.ApiClient.ParameterToString(contentType)); // header parameter
+            if (options != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
+            if (contentType != null)
+                localVarHeaderParams.Add("Content-Type",
+                    this.Configuration.ApiClient.ParameterToString(contentType)); // header parameter
             if (body != null && body.GetType() != typeof(byte[]))
             {
                 localVarPostBody = this.Configuration.ApiClient.Serialize(body); // http body (model) parameter
@@ -766,8 +850,10 @@ namespace ContextBrokerLibrary.Api
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(
+                localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
+                localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
@@ -803,10 +889,14 @@ namespace ContextBrokerLibrary.Api
         /// <param name="orderBy">Criteria for ordering results. See \&quot;Ordering Results\&quot; section for details. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>List&lt;ListEntitiesResponse&gt;</returns>
-        public List<ListEntitiesResponse> ListEntities (string id = null, string type = null, string idPattern = null, string typePattern = null, string q = null, string mq = null, string georel = null, string geometry = null, string coords = null, double? limit = null, double? offset = null, string attrs = null, string metadata = null, string orderBy = null, string options = null)
+        public List<ListEntitiesResponse> ListEntities(string id = null, string type = null,
+            string idPattern = null, string typePattern = null, string q = null, string mq = null, string georel = null,
+            string geometry = null, string coords = null, double? limit = null, double? offset = null,
+            string attrs = null, string metadata = null, string orderBy = null, string options = null)
         {
-             ApiResponse<List<ListEntitiesResponse>> localVarResponse = ListEntitiesWithHttpInfo(id, type, idPattern, typePattern, q, mq, georel, geometry, coords, limit, offset, attrs, metadata, orderBy, options);
-             return localVarResponse.Data;
+            ApiResponse<List<ListEntitiesResponse>> localVarResponse = ListEntitiesWithHttpInfo(id, type, idPattern,
+                typePattern, q, mq, georel, geometry, coords, limit, offset, attrs, metadata, orderBy, options);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -829,9 +919,12 @@ namespace ContextBrokerLibrary.Api
         /// <param name="orderBy">Criteria for ordering results. See \&quot;Ordering Results\&quot; section for details. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>ApiResponse of List&lt;ListEntitiesResponse&gt;</returns>
-        public ApiResponse< List<ListEntitiesResponse> > ListEntitiesWithHttpInfo (string id = null, string type = null, string idPattern = null, string typePattern = null, string q = null, string mq = null, string georel = null, string geometry = null, string coords = null, double? limit = null, double? offset = null, string attrs = null, string metadata = null, string orderBy = null, string options = null)
+        public ApiResponse<List<ListEntitiesResponse>> ListEntitiesWithHttpInfo(string id = null,
+            string type = null, string idPattern = null, string typePattern = null, string q = null, string mq = null,
+            string georel = null, string geometry = null, string coords = null, double? limit = null,
+            double? offset = null, string attrs = null, string metadata = null, string orderBy = null,
+            string options = null)
         {
-
             var localVarPath = "/v2/entities";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
@@ -841,37 +934,74 @@ namespace ContextBrokerLibrary.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            String[] localVarHttpContentTypes = new String[]
+            {
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType =
+                this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            String[] localVarHttpHeaderAccepts = new String[]
+            {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept =
+                this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (id != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "id", id)); // query parameter
-            if (type != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
-            if (idPattern != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "idPattern", idPattern)); // query parameter
-            if (typePattern != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "typePattern", typePattern)); // query parameter
-            if (q != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "q", q)); // query parameter
-            if (mq != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "mq", mq)); // query parameter
-            if (georel != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "georel", georel)); // query parameter
-            if (geometry != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "geometry", geometry)); // query parameter
-            if (coords != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "coords", coords)); // query parameter
-            if (limit != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
-            if (offset != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "offset", offset)); // query parameter
-            if (attrs != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "attrs", attrs)); // query parameter
-            if (metadata != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "metadata", metadata)); // query parameter
-            if (orderBy != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "orderBy", orderBy)); // query parameter
-            if (options != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
+            if (id != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "id", id)); // query parameter
+            if (type != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
+            if (idPattern != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "idPattern",
+                        idPattern)); // query parameter
+            if (typePattern != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "typePattern",
+                        typePattern)); // query parameter
+            if (q != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "q", q)); // query parameter
+            if (mq != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "mq", mq)); // query parameter
+            if (georel != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "georel", georel)); // query parameter
+            if (geometry != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "geometry", geometry)); // query parameter
+            if (coords != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "coords", coords)); // query parameter
+            if (limit != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
+            if (offset != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "offset", offset)); // query parameter
+            if (attrs != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "attrs", attrs)); // query parameter
+            if (metadata != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "metadata", metadata)); // query parameter
+            if (orderBy != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "orderBy", orderBy)); // query parameter
+            if (options != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
+                localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
@@ -884,7 +1014,8 @@ namespace ContextBrokerLibrary.Api
 
             return new ApiResponse<List<ListEntitiesResponse>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (List<ListEntitiesResponse>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<ListEntitiesResponse>)));
+                (List<ListEntitiesResponse>) this.Configuration.ApiClient.Deserialize(localVarResponse,
+                    typeof(List<ListEntitiesResponse>)));
         }
 
         /// <summary>
@@ -907,11 +1038,16 @@ namespace ContextBrokerLibrary.Api
         /// <param name="orderBy">Criteria for ordering results. See \&quot;Ordering Results\&quot; section for details. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of List&lt;ListEntitiesResponse&gt;</returns>
-        public async System.Threading.Tasks.Task<List<ListEntitiesResponse>> ListEntitiesAsync (string id = null, string type = null, string idPattern = null, string typePattern = null, string q = null, string mq = null, string georel = null, string geometry = null, string coords = null, double? limit = null, double? offset = null, string attrs = null, string metadata = null, string orderBy = null, string options = null)
+        public async System.Threading.Tasks.Task<List<ListEntitiesResponse>> ListEntitiesAsync(string id = null,
+            string type = null, string idPattern = null, string typePattern = null, string q = null, string mq = null,
+            string georel = null, string geometry = null, string coords = null, double? limit = null,
+            double? offset = null, string attrs = null, string metadata = null, string orderBy = null,
+            string options = null)
         {
-             ApiResponse<List<ListEntitiesResponse>> localVarResponse = await ListEntitiesAsyncWithHttpInfo(id, type, idPattern, typePattern, q, mq, georel, geometry, coords, limit, offset, attrs, metadata, orderBy, options);
-             return localVarResponse.Data;
-
+            ApiResponse<List<ListEntitiesResponse>> localVarResponse = await ListEntitiesAsyncWithHttpInfo(id, type,
+                idPattern, typePattern, q, mq, georel, geometry, coords, limit, offset, attrs, metadata, orderBy,
+                options);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -934,9 +1070,12 @@ namespace ContextBrokerLibrary.Api
         /// <param name="orderBy">Criteria for ordering results. See \&quot;Ordering Results\&quot; section for details. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;ListEntitiesResponse&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<ListEntitiesResponse>>> ListEntitiesAsyncWithHttpInfo (string id = null, string type = null, string idPattern = null, string typePattern = null, string q = null, string mq = null, string georel = null, string geometry = null, string coords = null, double? limit = null, double? offset = null, string attrs = null, string metadata = null, string orderBy = null, string options = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<ListEntitiesResponse>>>
+            ListEntitiesAsyncWithHttpInfo(string id = null, string type = null, string idPattern = null,
+                string typePattern = null, string q = null, string mq = null, string georel = null,
+                string geometry = null, string coords = null, double? limit = null, double? offset = null,
+                string attrs = null, string metadata = null, string orderBy = null, string options = null)
         {
-
             var localVarPath = "/v2/entities";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
@@ -946,37 +1085,75 @@ namespace ContextBrokerLibrary.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            String[] localVarHttpContentTypes = new String[]
+            {
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType =
+                this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            String[] localVarHttpHeaderAccepts = new String[]
+            {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept =
+                this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (id != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "id", id)); // query parameter
-            if (type != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
-            if (idPattern != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "idPattern", idPattern)); // query parameter
-            if (typePattern != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "typePattern", typePattern)); // query parameter
-            if (q != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "q", q)); // query parameter
-            if (mq != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "mq", mq)); // query parameter
-            if (georel != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "georel", georel)); // query parameter
-            if (geometry != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "geometry", geometry)); // query parameter
-            if (coords != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "coords", coords)); // query parameter
-            if (limit != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
-            if (offset != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "offset", offset)); // query parameter
-            if (attrs != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "attrs", attrs)); // query parameter
-            if (metadata != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "metadata", metadata)); // query parameter
-            if (orderBy != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "orderBy", orderBy)); // query parameter
-            if (options != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
+            if (id != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "id", id)); // query parameter
+            if (type != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
+            if (idPattern != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "idPattern",
+                        idPattern)); // query parameter
+            if (typePattern != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "typePattern",
+                        typePattern)); // query parameter
+            if (q != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "q", q)); // query parameter
+            if (mq != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "mq", mq)); // query parameter
+            if (georel != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "georel", georel)); // query parameter
+            if (geometry != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "geometry", geometry)); // query parameter
+            if (coords != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "coords", coords)); // query parameter
+            if (limit != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
+            if (offset != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "offset", offset)); // query parameter
+            if (attrs != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "attrs", attrs)); // query parameter
+            if (metadata != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "metadata", metadata)); // query parameter
+            if (orderBy != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "orderBy", orderBy)); // query parameter
+            if (options != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(
+                localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
+                localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
@@ -989,7 +1166,8 @@ namespace ContextBrokerLibrary.Api
 
             return new ApiResponse<List<ListEntitiesResponse>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (List<ListEntitiesResponse>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<ListEntitiesResponse>)));
+                (List<ListEntitiesResponse>) this.Configuration.ApiClient.Deserialize(localVarResponse,
+                    typeof(List<ListEntitiesResponse>)));
         }
 
         /// <summary>
@@ -999,9 +1177,9 @@ namespace ContextBrokerLibrary.Api
         /// <param name="entityId">Id of the entity to be deleted</param>
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <returns></returns>
-        public void RemoveEntity (string entityId, string type = null)
+        public void RemoveEntity(string entityId, string type = null)
         {
-             RemoveEntityWithHttpInfo(entityId, type);
+            RemoveEntityWithHttpInfo(entityId, type);
         }
 
         /// <summary>
@@ -1011,11 +1189,12 @@ namespace ContextBrokerLibrary.Api
         /// <param name="entityId">Id of the entity to be deleted</param>
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> RemoveEntityWithHttpInfo (string entityId, string type = null)
+        public ApiResponse<Object> RemoveEntityWithHttpInfo(string entityId, string type = null)
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
-                throw new ApiException(400, "Missing required parameter 'entityId' when calling EntitiesApi->RemoveEntity");
+                throw new ApiException(400,
+                    "Missing required parameter 'entityId' when calling EntitiesApi->RemoveEntity");
 
             var localVarPath = "/v2/entities/{entityId}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1026,23 +1205,32 @@ namespace ContextBrokerLibrary.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            String[] localVarHttpContentTypes = new String[]
+            {
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType =
+                this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            String[] localVarHttpHeaderAccepts = new String[]
+            {
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept =
+                this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (entityId != null) localVarPathParams.Add("entityId", this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
-            if (type != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
+            if (entityId != null)
+                localVarPathParams.Add("entityId",
+                    this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
+            if (type != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
+                localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
@@ -1065,10 +1253,9 @@ namespace ContextBrokerLibrary.Api
         /// <param name="entityId">Id of the entity to be deleted</param>
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task RemoveEntityAsync (string entityId, string type = null)
+        public async System.Threading.Tasks.Task RemoveEntityAsync(string entityId, string type = null)
         {
-             await RemoveEntityAsyncWithHttpInfo(entityId, type);
-
+            await RemoveEntityAsyncWithHttpInfo(entityId, type);
         }
 
         /// <summary>
@@ -1078,11 +1265,13 @@ namespace ContextBrokerLibrary.Api
         /// <param name="entityId">Id of the entity to be deleted</param>
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> RemoveEntityAsyncWithHttpInfo (string entityId, string type = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> RemoveEntityAsyncWithHttpInfo(string entityId,
+            string type = null)
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
-                throw new ApiException(400, "Missing required parameter 'entityId' when calling EntitiesApi->RemoveEntity");
+                throw new ApiException(400,
+                    "Missing required parameter 'entityId' when calling EntitiesApi->RemoveEntity");
 
             var localVarPath = "/v2/entities/{entityId}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1093,23 +1282,33 @@ namespace ContextBrokerLibrary.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            String[] localVarHttpContentTypes = new String[]
+            {
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType =
+                this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            String[] localVarHttpHeaderAccepts = new String[]
+            {
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept =
+                this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (entityId != null) localVarPathParams.Add("entityId", this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
-            if (type != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
+            if (entityId != null)
+                localVarPathParams.Add("entityId",
+                    this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
+            if (type != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(
+                localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
+                localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
@@ -1135,9 +1334,10 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns></returns>
-        public void ReplaceAllEntityAttributes (ReplaceAllEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null)
+        public void ReplaceAllEntityAttributes(ReplaceAllEntityAttributesRequest body, string contentType,
+            string entityId, string type = null, string options = null)
         {
-             ReplaceAllEntityAttributesWithHttpInfo(body, contentType, entityId, type, options);
+            ReplaceAllEntityAttributesWithHttpInfo(body, contentType, entityId, type, options);
         }
 
         /// <summary>
@@ -1150,17 +1350,21 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> ReplaceAllEntityAttributesWithHttpInfo (ReplaceAllEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null)
+        public ApiResponse<Object> ReplaceAllEntityAttributesWithHttpInfo(ReplaceAllEntityAttributesRequest body,
+            string contentType, string entityId, string type = null, string options = null)
         {
             // verify the required parameter 'body' is set
             if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling EntitiesApi->ReplaceAllEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'body' when calling EntitiesApi->ReplaceAllEntityAttributes");
             // verify the required parameter 'contentType' is set
             if (contentType == null)
-                throw new ApiException(400, "Missing required parameter 'contentType' when calling EntitiesApi->ReplaceAllEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'contentType' when calling EntitiesApi->ReplaceAllEntityAttributes");
             // verify the required parameter 'entityId' is set
             if (entityId == null)
-                throw new ApiException(400, "Missing required parameter 'entityId' when calling EntitiesApi->ReplaceAllEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'entityId' when calling EntitiesApi->ReplaceAllEntityAttributes");
 
             var localVarPath = "/v2/entities/{entityId}/attrs";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1171,22 +1375,34 @@ namespace ContextBrokerLibrary.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            String[] localVarHttpContentTypes = new String[]
+            {
                 "application/json"
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType =
+                this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            String[] localVarHttpHeaderAccepts = new String[]
+            {
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept =
+                this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (entityId != null) localVarPathParams.Add("entityId", this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
-            if (type != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
-            if (options != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
-            if (contentType != null) localVarHeaderParams.Add("Content-Type", this.Configuration.ApiClient.ParameterToString(contentType)); // header parameter
+            if (entityId != null)
+                localVarPathParams.Add("entityId",
+                    this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
+            if (type != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
+            if (options != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
+            if (contentType != null)
+                localVarHeaderParams.Add("Content-Type",
+                    this.Configuration.ApiClient.ParameterToString(contentType)); // header parameter
             if (body != null && body.GetType() != typeof(byte[]))
             {
                 localVarPostBody = this.Configuration.ApiClient.Serialize(body); // http body (model) parameter
@@ -1198,7 +1414,8 @@ namespace ContextBrokerLibrary.Api
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
+                localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
@@ -1224,10 +1441,10 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ReplaceAllEntityAttributesAsync (ReplaceAllEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null)
+        public async System.Threading.Tasks.Task ReplaceAllEntityAttributesAsync(ReplaceAllEntityAttributesRequest body,
+            string contentType, string entityId, string type = null, string options = null)
         {
-             await ReplaceAllEntityAttributesAsyncWithHttpInfo(body, contentType, entityId, type, options);
-
+            await ReplaceAllEntityAttributesAsyncWithHttpInfo(body, contentType, entityId, type, options);
         }
 
         /// <summary>
@@ -1240,17 +1457,22 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> ReplaceAllEntityAttributesAsyncWithHttpInfo (ReplaceAllEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> ReplaceAllEntityAttributesAsyncWithHttpInfo(
+            ReplaceAllEntityAttributesRequest body, string contentType, string entityId, string type = null,
+            string options = null)
         {
             // verify the required parameter 'body' is set
             if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling EntitiesApi->ReplaceAllEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'body' when calling EntitiesApi->ReplaceAllEntityAttributes");
             // verify the required parameter 'contentType' is set
             if (contentType == null)
-                throw new ApiException(400, "Missing required parameter 'contentType' when calling EntitiesApi->ReplaceAllEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'contentType' when calling EntitiesApi->ReplaceAllEntityAttributes");
             // verify the required parameter 'entityId' is set
             if (entityId == null)
-                throw new ApiException(400, "Missing required parameter 'entityId' when calling EntitiesApi->ReplaceAllEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'entityId' when calling EntitiesApi->ReplaceAllEntityAttributes");
 
             var localVarPath = "/v2/entities/{entityId}/attrs";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1261,22 +1483,34 @@ namespace ContextBrokerLibrary.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            String[] localVarHttpContentTypes = new String[]
+            {
                 "application/json"
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType =
+                this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            String[] localVarHttpHeaderAccepts = new String[]
+            {
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept =
+                this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (entityId != null) localVarPathParams.Add("entityId", this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
-            if (type != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
-            if (options != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
-            if (contentType != null) localVarHeaderParams.Add("Content-Type", this.Configuration.ApiClient.ParameterToString(contentType)); // header parameter
+            if (entityId != null)
+                localVarPathParams.Add("entityId",
+                    this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
+            if (type != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
+            if (options != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
+            if (contentType != null)
+                localVarHeaderParams.Add("Content-Type",
+                    this.Configuration.ApiClient.ParameterToString(contentType)); // header parameter
             if (body != null && body.GetType() != typeof(byte[]))
             {
                 localVarPostBody = this.Configuration.ApiClient.Serialize(body); // http body (model) parameter
@@ -1287,8 +1521,10 @@ namespace ContextBrokerLibrary.Api
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(
+                localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
+                localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
@@ -1314,10 +1550,12 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>RetrieveEntityResponse</returns>
-        public RetrieveEntityResponse RetrieveEntity (string entityId, string type = null, string attrs = null, string metadata = null, string options = null)
+        public RetrieveEntityResponse RetrieveEntity(string entityId, string type = null, string attrs = null,
+            string metadata = null, string options = null)
         {
-             ApiResponse<RetrieveEntityResponse> localVarResponse = RetrieveEntityWithHttpInfo(entityId, type, attrs, metadata, options);
-             return localVarResponse.Data;
+            ApiResponse<RetrieveEntityResponse> localVarResponse =
+                RetrieveEntityWithHttpInfo(entityId, type, attrs, metadata, options);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1330,11 +1568,13 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>ApiResponse of RetrieveEntityResponse</returns>
-        public ApiResponse< RetrieveEntityResponse > RetrieveEntityWithHttpInfo (string entityId, string type = null, string attrs = null, string metadata = null, string options = null)
+        public ApiResponse<RetrieveEntityResponse> RetrieveEntityWithHttpInfo(string entityId, string type = null,
+            string attrs = null, string metadata = null, string options = null)
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
-                throw new ApiException(400, "Missing required parameter 'entityId' when calling EntitiesApi->RetrieveEntity");
+                throw new ApiException(400,
+                    "Missing required parameter 'entityId' when calling EntitiesApi->RetrieveEntity");
 
             var localVarPath = "/v2/entities/{entityId}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1345,27 +1585,42 @@ namespace ContextBrokerLibrary.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            String[] localVarHttpContentTypes = new String[]
+            {
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType =
+                this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            String[] localVarHttpHeaderAccepts = new String[]
+            {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept =
+                this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (entityId != null) localVarPathParams.Add("entityId", this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
-            if (type != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
-            if (attrs != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "attrs", attrs)); // query parameter
-            if (metadata != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "metadata", metadata)); // query parameter
-            if (options != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
+            if (entityId != null)
+                localVarPathParams.Add("entityId",
+                    this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
+            if (type != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
+            if (attrs != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "attrs", attrs)); // query parameter
+            if (metadata != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "metadata", metadata)); // query parameter
+            if (options != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
+                localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
@@ -1378,7 +1633,8 @@ namespace ContextBrokerLibrary.Api
 
             return new ApiResponse<RetrieveEntityResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (RetrieveEntityResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(RetrieveEntityResponse)));
+                (RetrieveEntityResponse) this.Configuration.ApiClient.Deserialize(localVarResponse,
+                    typeof(RetrieveEntityResponse)));
         }
 
         /// <summary>
@@ -1391,11 +1647,12 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of RetrieveEntityResponse</returns>
-        public async System.Threading.Tasks.Task<RetrieveEntityResponse> RetrieveEntityAsync (string entityId, string type = null, string attrs = null, string metadata = null, string options = null)
+        public async System.Threading.Tasks.Task<RetrieveEntityResponse> RetrieveEntityAsync(string entityId,
+            string type = null, string attrs = null, string metadata = null, string options = null)
         {
-             ApiResponse<RetrieveEntityResponse> localVarResponse = await RetrieveEntityAsyncWithHttpInfo(entityId, type, attrs, metadata, options);
-             return localVarResponse.Data;
-
+            ApiResponse<RetrieveEntityResponse> localVarResponse =
+                await RetrieveEntityAsyncWithHttpInfo(entityId, type, attrs, metadata, options);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1408,11 +1665,13 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of ApiResponse (RetrieveEntityResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<RetrieveEntityResponse>> RetrieveEntityAsyncWithHttpInfo (string entityId, string type = null, string attrs = null, string metadata = null, string options = null)
+        public async System.Threading.Tasks.Task<ApiResponse<RetrieveEntityResponse>> RetrieveEntityAsyncWithHttpInfo(
+            string entityId, string type = null, string attrs = null, string metadata = null, string options = null)
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
-                throw new ApiException(400, "Missing required parameter 'entityId' when calling EntitiesApi->RetrieveEntity");
+                throw new ApiException(400,
+                    "Missing required parameter 'entityId' when calling EntitiesApi->RetrieveEntity");
 
             var localVarPath = "/v2/entities/{entityId}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1423,27 +1682,43 @@ namespace ContextBrokerLibrary.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            String[] localVarHttpContentTypes = new String[]
+            {
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType =
+                this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            String[] localVarHttpHeaderAccepts = new String[]
+            {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept =
+                this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (entityId != null) localVarPathParams.Add("entityId", this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
-            if (type != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
-            if (attrs != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "attrs", attrs)); // query parameter
-            if (metadata != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "metadata", metadata)); // query parameter
-            if (options != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
+            if (entityId != null)
+                localVarPathParams.Add("entityId",
+                    this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
+            if (type != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
+            if (attrs != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "attrs", attrs)); // query parameter
+            if (metadata != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "metadata", metadata)); // query parameter
+            if (options != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(
+                localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
+                localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
@@ -1456,7 +1731,8 @@ namespace ContextBrokerLibrary.Api
 
             return new ApiResponse<RetrieveEntityResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (RetrieveEntityResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(RetrieveEntityResponse)));
+                (RetrieveEntityResponse) this.Configuration.ApiClient.Deserialize(localVarResponse,
+                    typeof(RetrieveEntityResponse)));
         }
 
         /// <summary>
@@ -1469,10 +1745,12 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>RetrieveEntityAttributesResponse</returns>
-        public RetrieveEntityAttributesResponse RetrieveEntityAttributes (string entityId, string type = null, string attrs = null, string metadata = null, string options = null)
+        public RetrieveEntityAttributesResponse RetrieveEntityAttributes(string entityId, string type = null,
+            string attrs = null, string metadata = null, string options = null)
         {
-             ApiResponse<RetrieveEntityAttributesResponse> localVarResponse = RetrieveEntityAttributesWithHttpInfo(entityId, type, attrs, metadata, options);
-             return localVarResponse.Data;
+            ApiResponse<RetrieveEntityAttributesResponse> localVarResponse =
+                RetrieveEntityAttributesWithHttpInfo(entityId, type, attrs, metadata, options);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1485,11 +1763,13 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>ApiResponse of RetrieveEntityAttributesResponse</returns>
-        public ApiResponse< RetrieveEntityAttributesResponse > RetrieveEntityAttributesWithHttpInfo (string entityId, string type = null, string attrs = null, string metadata = null, string options = null)
+        public ApiResponse<RetrieveEntityAttributesResponse> RetrieveEntityAttributesWithHttpInfo(string entityId,
+            string type = null, string attrs = null, string metadata = null, string options = null)
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
-                throw new ApiException(400, "Missing required parameter 'entityId' when calling EntitiesApi->RetrieveEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'entityId' when calling EntitiesApi->RetrieveEntityAttributes");
 
             var localVarPath = "/v2/entities/{entityId}/attrs";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1500,27 +1780,42 @@ namespace ContextBrokerLibrary.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            String[] localVarHttpContentTypes = new String[]
+            {
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType =
+                this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            String[] localVarHttpHeaderAccepts = new String[]
+            {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept =
+                this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (entityId != null) localVarPathParams.Add("entityId", this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
-            if (type != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
-            if (attrs != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "attrs", attrs)); // query parameter
-            if (metadata != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "metadata", metadata)); // query parameter
-            if (options != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
+            if (entityId != null)
+                localVarPathParams.Add("entityId",
+                    this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
+            if (type != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
+            if (attrs != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "attrs", attrs)); // query parameter
+            if (metadata != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "metadata", metadata)); // query parameter
+            if (options != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
+                localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
@@ -1533,7 +1828,8 @@ namespace ContextBrokerLibrary.Api
 
             return new ApiResponse<RetrieveEntityAttributesResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (RetrieveEntityAttributesResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(RetrieveEntityAttributesResponse)));
+                (RetrieveEntityAttributesResponse) this.Configuration.ApiClient.Deserialize(localVarResponse,
+                    typeof(RetrieveEntityAttributesResponse)));
         }
 
         /// <summary>
@@ -1546,11 +1842,12 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of RetrieveEntityAttributesResponse</returns>
-        public async System.Threading.Tasks.Task<RetrieveEntityAttributesResponse> RetrieveEntityAttributesAsync (string entityId, string type = null, string attrs = null, string metadata = null, string options = null)
+        public async System.Threading.Tasks.Task<RetrieveEntityAttributesResponse> RetrieveEntityAttributesAsync(
+            string entityId, string type = null, string attrs = null, string metadata = null, string options = null)
         {
-             ApiResponse<RetrieveEntityAttributesResponse> localVarResponse = await RetrieveEntityAttributesAsyncWithHttpInfo(entityId, type, attrs, metadata, options);
-             return localVarResponse.Data;
-
+            ApiResponse<RetrieveEntityAttributesResponse> localVarResponse =
+                await RetrieveEntityAttributesAsyncWithHttpInfo(entityId, type, attrs, metadata, options);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1563,11 +1860,14 @@ namespace ContextBrokerLibrary.Api
         /// <param name="metadata">A list of metadata names to include in the response. See \&quot;Filtering out attributes and metadata\&quot; section for more detail. (optional)</param>
         /// <param name="options">Options dictionary (optional)</param>
         /// <returns>Task of ApiResponse (RetrieveEntityAttributesResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<RetrieveEntityAttributesResponse>> RetrieveEntityAttributesAsyncWithHttpInfo (string entityId, string type = null, string attrs = null, string metadata = null, string options = null)
+        public async System.Threading.Tasks.Task<ApiResponse<RetrieveEntityAttributesResponse>>
+            RetrieveEntityAttributesAsyncWithHttpInfo(string entityId, string type = null, string attrs = null,
+                string metadata = null, string options = null)
         {
             // verify the required parameter 'entityId' is set
             if (entityId == null)
-                throw new ApiException(400, "Missing required parameter 'entityId' when calling EntitiesApi->RetrieveEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'entityId' when calling EntitiesApi->RetrieveEntityAttributes");
 
             var localVarPath = "/v2/entities/{entityId}/attrs";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1578,27 +1878,43 @@ namespace ContextBrokerLibrary.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            String[] localVarHttpContentTypes = new String[]
+            {
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType =
+                this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            String[] localVarHttpHeaderAccepts = new String[]
+            {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept =
+                this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (entityId != null) localVarPathParams.Add("entityId", this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
-            if (type != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
-            if (attrs != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "attrs", attrs)); // query parameter
-            if (metadata != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "metadata", metadata)); // query parameter
-            if (options != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
+            if (entityId != null)
+                localVarPathParams.Add("entityId",
+                    this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
+            if (type != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
+            if (attrs != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "attrs", attrs)); // query parameter
+            if (metadata != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "metadata", metadata)); // query parameter
+            if (options != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(
+                localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
+                localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
@@ -1611,7 +1927,8 @@ namespace ContextBrokerLibrary.Api
 
             return new ApiResponse<RetrieveEntityAttributesResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (RetrieveEntityAttributesResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(RetrieveEntityAttributesResponse)));
+                (RetrieveEntityAttributesResponse) this.Configuration.ApiClient.Deserialize(localVarResponse,
+                    typeof(RetrieveEntityAttributesResponse)));
         }
 
         /// <summary>
@@ -1624,9 +1941,10 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns></returns>
-        public void UpdateExistingEntityAttributes (UpdateExistingEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null)
+        public void UpdateExistingEntityAttributes(UpdateExistingEntityAttributesRequest body, string contentType,
+            string entityId, string type = null, string options = null)
         {
-             UpdateExistingEntityAttributesWithHttpInfo(body, contentType, entityId, type, options);
+            UpdateExistingEntityAttributesWithHttpInfo(body, contentType, entityId, type, options);
         }
 
         /// <summary>
@@ -1639,17 +1957,22 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> UpdateExistingEntityAttributesWithHttpInfo (UpdateExistingEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null)
+        public ApiResponse<Object> UpdateExistingEntityAttributesWithHttpInfo(
+            UpdateExistingEntityAttributesRequest body, string contentType, string entityId, string type = null,
+            string options = null)
         {
             // verify the required parameter 'body' is set
             if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling EntitiesApi->UpdateExistingEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'body' when calling EntitiesApi->UpdateExistingEntityAttributes");
             // verify the required parameter 'contentType' is set
             if (contentType == null)
-                throw new ApiException(400, "Missing required parameter 'contentType' when calling EntitiesApi->UpdateExistingEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'contentType' when calling EntitiesApi->UpdateExistingEntityAttributes");
             // verify the required parameter 'entityId' is set
             if (entityId == null)
-                throw new ApiException(400, "Missing required parameter 'entityId' when calling EntitiesApi->UpdateExistingEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'entityId' when calling EntitiesApi->UpdateExistingEntityAttributes");
 
             var localVarPath = "/v2/entities/{entityId}/attrs";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1660,22 +1983,34 @@ namespace ContextBrokerLibrary.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            String[] localVarHttpContentTypes = new String[]
+            {
                 "application/json"
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType =
+                this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            String[] localVarHttpHeaderAccepts = new String[]
+            {
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept =
+                this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (entityId != null) localVarPathParams.Add("entityId", this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
-            if (type != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
-            if (options != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
-            if (contentType != null) localVarHeaderParams.Add("Content-Type", this.Configuration.ApiClient.ParameterToString(contentType)); // header parameter
+            if (entityId != null)
+                localVarPathParams.Add("entityId",
+                    this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
+            if (type != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
+            if (options != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
+            if (contentType != null)
+                localVarHeaderParams.Add("Content-Type",
+                    this.Configuration.ApiClient.ParameterToString(contentType)); // header parameter
             if (body != null && body.GetType() != typeof(byte[]))
             {
                 localVarPostBody = this.Configuration.ApiClient.Serialize(body); // http body (model) parameter
@@ -1687,7 +2022,8 @@ namespace ContextBrokerLibrary.Api
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
+                localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
@@ -1713,10 +2049,11 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task UpdateExistingEntityAttributesAsync (UpdateExistingEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null)
+        public async System.Threading.Tasks.Task UpdateExistingEntityAttributesAsync(
+            UpdateExistingEntityAttributesRequest body, string contentType, string entityId, string type = null,
+            string options = null)
         {
-             await UpdateExistingEntityAttributesAsyncWithHttpInfo(body, contentType, entityId, type, options);
-
+            await UpdateExistingEntityAttributesAsyncWithHttpInfo(body, contentType, entityId, type, options);
         }
 
         /// <summary>
@@ -1729,17 +2066,22 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> UpdateExistingEntityAttributesAsyncWithHttpInfo (UpdateExistingEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> UpdateExistingEntityAttributesAsyncWithHttpInfo(
+            UpdateExistingEntityAttributesRequest body, string contentType, string entityId, string type = null,
+            string options = null)
         {
             // verify the required parameter 'body' is set
             if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling EntitiesApi->UpdateExistingEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'body' when calling EntitiesApi->UpdateExistingEntityAttributes");
             // verify the required parameter 'contentType' is set
             if (contentType == null)
-                throw new ApiException(400, "Missing required parameter 'contentType' when calling EntitiesApi->UpdateExistingEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'contentType' when calling EntitiesApi->UpdateExistingEntityAttributes");
             // verify the required parameter 'entityId' is set
             if (entityId == null)
-                throw new ApiException(400, "Missing required parameter 'entityId' when calling EntitiesApi->UpdateExistingEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'entityId' when calling EntitiesApi->UpdateExistingEntityAttributes");
 
             var localVarPath = "/v2/entities/{entityId}/attrs";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1750,22 +2092,34 @@ namespace ContextBrokerLibrary.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            String[] localVarHttpContentTypes = new String[]
+            {
                 "application/json"
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType =
+                this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            String[] localVarHttpHeaderAccepts = new String[]
+            {
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept =
+                this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (entityId != null) localVarPathParams.Add("entityId", this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
-            if (type != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
-            if (options != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
-            if (contentType != null) localVarHeaderParams.Add("Content-Type", this.Configuration.ApiClient.ParameterToString(contentType)); // header parameter
+            if (entityId != null)
+                localVarPathParams.Add("entityId",
+                    this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
+            if (type != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
+            if (options != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
+            if (contentType != null)
+                localVarHeaderParams.Add("Content-Type",
+                    this.Configuration.ApiClient.ParameterToString(contentType)); // header parameter
             if (body != null && body.GetType() != typeof(byte[]))
             {
                 localVarPostBody = this.Configuration.ApiClient.Serialize(body); // http body (model) parameter
@@ -1776,8 +2130,10 @@ namespace ContextBrokerLibrary.Api
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(
+                localVarPath,
+                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
+                localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
@@ -1803,9 +2159,10 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns></returns>
-        public void UpdateOrAppendEntityAttributes (UpdateOrAppendEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null)
+        public void UpdateOrAppendEntityAttributes(UpdateOrAppendEntityAttributesRequest body, string contentType,
+            string entityId, string type = null, string options = null)
         {
-             UpdateOrAppendEntityAttributesWithHttpInfo(body, contentType, entityId, type, options);
+            UpdateOrAppendEntityAttributesWithHttpInfo(body, contentType, entityId, type, options);
         }
 
         /// <summary>
@@ -1818,17 +2175,22 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> UpdateOrAppendEntityAttributesWithHttpInfo (UpdateOrAppendEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null)
+        public ApiResponse<Object> UpdateOrAppendEntityAttributesWithHttpInfo(
+            UpdateOrAppendEntityAttributesRequest body, string contentType, string entityId, string type = null,
+            string options = null)
         {
             // verify the required parameter 'body' is set
             if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling EntitiesApi->UpdateOrAppendEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'body' when calling EntitiesApi->UpdateOrAppendEntityAttributes");
             // verify the required parameter 'contentType' is set
             if (contentType == null)
-                throw new ApiException(400, "Missing required parameter 'contentType' when calling EntitiesApi->UpdateOrAppendEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'contentType' when calling EntitiesApi->UpdateOrAppendEntityAttributes");
             // verify the required parameter 'entityId' is set
             if (entityId == null)
-                throw new ApiException(400, "Missing required parameter 'entityId' when calling EntitiesApi->UpdateOrAppendEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'entityId' when calling EntitiesApi->UpdateOrAppendEntityAttributes");
 
             var localVarPath = "/v2/entities/{entityId}/attrs";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1839,22 +2201,34 @@ namespace ContextBrokerLibrary.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            String[] localVarHttpContentTypes = new String[]
+            {
                 "application/json"
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType =
+                this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            String[] localVarHttpHeaderAccepts = new String[]
+            {
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept =
+                this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (entityId != null) localVarPathParams.Add("entityId", this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
-            if (type != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
-            if (options != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
-            if (contentType != null) localVarHeaderParams.Add("Content-Type", this.Configuration.ApiClient.ParameterToString(contentType)); // header parameter
+            if (entityId != null)
+                localVarPathParams.Add("entityId",
+                    this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
+            if (type != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
+            if (options != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
+            if (contentType != null)
+                localVarHeaderParams.Add("Content-Type",
+                    this.Configuration.ApiClient.ParameterToString(contentType)); // header parameter
             if (body != null && body.GetType() != typeof(byte[]))
             {
                 localVarPostBody = this.Configuration.ApiClient.Serialize(body); // http body (model) parameter
@@ -1866,7 +2240,8 @@ namespace ContextBrokerLibrary.Api
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
+                localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
@@ -1892,10 +2267,11 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task UpdateOrAppendEntityAttributesAsync (UpdateOrAppendEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null)
+        public async System.Threading.Tasks.Task UpdateOrAppendEntityAttributesAsync(
+            UpdateOrAppendEntityAttributesRequest body, string contentType, string entityId, string type = null,
+            string options = null)
         {
-             await UpdateOrAppendEntityAttributesAsyncWithHttpInfo(body, contentType, entityId, type, options);
-
+            await UpdateOrAppendEntityAttributesAsyncWithHttpInfo(body, contentType, entityId, type, options);
         }
 
         /// <summary>
@@ -1908,17 +2284,22 @@ namespace ContextBrokerLibrary.Api
         /// <param name="type">Entity type, to avoid ambiguity in case there are several entities with the same entity id. (optional)</param>
         /// <param name="options">Operations options (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> UpdateOrAppendEntityAttributesAsyncWithHttpInfo (UpdateOrAppendEntityAttributesRequest body, string contentType, string entityId, string type = null, string options = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> UpdateOrAppendEntityAttributesAsyncWithHttpInfo(
+            UpdateOrAppendEntityAttributesRequest body, string contentType, string entityId, string type = null,
+            string options = null)
         {
             // verify the required parameter 'body' is set
             if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling EntitiesApi->UpdateOrAppendEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'body' when calling EntitiesApi->UpdateOrAppendEntityAttributes");
             // verify the required parameter 'contentType' is set
             if (contentType == null)
-                throw new ApiException(400, "Missing required parameter 'contentType' when calling EntitiesApi->UpdateOrAppendEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'contentType' when calling EntitiesApi->UpdateOrAppendEntityAttributes");
             // verify the required parameter 'entityId' is set
             if (entityId == null)
-                throw new ApiException(400, "Missing required parameter 'entityId' when calling EntitiesApi->UpdateOrAppendEntityAttributes");
+                throw new ApiException(400,
+                    "Missing required parameter 'entityId' when calling EntitiesApi->UpdateOrAppendEntityAttributes");
 
             var localVarPath = "/v2/entities/{entityId}/attrs";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1929,22 +2310,34 @@ namespace ContextBrokerLibrary.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            String[] localVarHttpContentTypes = new String[]
+            {
                 "application/json"
             };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType =
+                this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            String[] localVarHttpHeaderAccepts = new String[]
+            {
             };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept =
+                this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (entityId != null) localVarPathParams.Add("entityId", this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
-            if (type != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
-            if (options != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
-            if (contentType != null) localVarHeaderParams.Add("Content-Type", this.Configuration.ApiClient.ParameterToString(contentType)); // header parameter
+            if (entityId != null)
+                localVarPathParams.Add("entityId",
+                    this.Configuration.ApiClient.ParameterToString(entityId)); // path parameter
+            if (type != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "type", type)); // query parameter
+            if (options != null)
+                localVarQueryParams.AddRange(
+                    this.Configuration.ApiClient.ParameterToKeyValuePairs("", "options", options)); // query parameter
+            if (contentType != null)
+                localVarHeaderParams.Add("Content-Type",
+                    this.Configuration.ApiClient.ParameterToString(contentType)); // header parameter
             if (body != null && body.GetType() != typeof(byte[]))
             {
                 localVarPostBody = this.Configuration.ApiClient.Serialize(body); // http body (model) parameter
@@ -1955,8 +2348,10 @@ namespace ContextBrokerLibrary.Api
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(
+                localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
+                localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
@@ -1971,6 +2366,5 @@ namespace ContextBrokerLibrary.Api
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
                 null);
         }
-
     }
 }
