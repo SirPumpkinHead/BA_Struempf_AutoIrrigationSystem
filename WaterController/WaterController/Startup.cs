@@ -1,4 +1,7 @@
+using System;
 using ContextBrokerLibrary.Api;
+using Hangfire;
+using Hangfire.MySql.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +24,31 @@ namespace WaterController
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Setting up hangfire
+            var hangfireConnectionString =
+                Configuration.GetConnectionString("HangfireDb");
+
+            if (string.IsNullOrEmpty(hangfireConnectionString))
+            {
+                throw new Exception("No hangfire connection string configured (HangfireDb)");
+            }
+
+            services.AddHangfire(configuration =>
+            {
+                configuration
+                    .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+                    .UseSimpleAssemblyNameTypeSerializer()
+                    .UseRecommendedSerializerSettings();
+
+                configuration.UseStorage(new MySqlStorage(
+                    hangfireConnectionString,
+                    new MySqlStorageOptions
+                    {
+                        TablePrefix = "Hangfire"
+                    }
+                ));
+            });
+
             // Setting default headers for all requests to context broker
             ContextBrokerLibrary.Client.Configuration.Default.AddDefaultHeader("fiware-service",
                 Configuration.GetValue<string>("FiwareService"));
@@ -50,6 +78,10 @@ namespace WaterController
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+            app.UseHangfireServer();
+
+            app.UseHangfireDashboard();
         }
 
         private string GetBasePath()

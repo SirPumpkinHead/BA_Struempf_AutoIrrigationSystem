@@ -48,22 +48,22 @@ services:
       test: curl --fail -s http://iot-agent:${IOTA_NORTH_PORT}/iot/about || exit 1
 
   # MQTT broker
-#  mosquitto:
-#    image: eclipse-mosquitto
-#    hostname: mosquitto
-#    container_name: mosquitto
-#    networks:
-#      - default
-#    expose:
-#      - "1883"
-#      - "9001"
-#    ports:
-#      - "1883:1883"
-#      - "9001:9001"
-#    volumes:
-#      - ./mosquitto/config:/mosquitto/config
-#      - ./mosquitto/data:/mosquitto/data
-#      - ./mosquitto/log:/mosquitto/log
+  #  mosquitto:
+  #    image: eclipse-mosquitto
+  #    hostname: mosquitto
+  #    container_name: mosquitto
+  #    networks:
+  #      - default
+  #    expose:
+  #      - "1883"
+  #      - "9001"
+  #    ports:
+  #      - "1883:1883"
+  #      - "9001:9001"
+  #    volumes:
+  #      - ./mosquitto/config:/mosquitto/config
+  #      - ./mosquitto/data:/mosquitto/data
+  #      - ./mosquitto/log:/mosquitto/log
 
   # Database
   mongo-db:
@@ -79,6 +79,18 @@ services:
     command: --bind_ip_all --smallfiles
     volumes:
       - mongo-db:/data
+
+  mysql-db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: L7qsXhqgkXne2jJxzp8T
+      MYSQL_DATABASE: hangfire
+      MYSQL_USER: user
+      MYSQL_PASSWORD: imGQ2gMzthcT
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    ports:
+      - 3306:3306
 
 volumes:
   mongo-db: ~
