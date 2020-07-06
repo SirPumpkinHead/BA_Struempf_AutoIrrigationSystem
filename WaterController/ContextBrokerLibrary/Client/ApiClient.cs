@@ -23,7 +23,7 @@ namespace ContextBrokerLibrary.Client
     /// <summary>
     /// API client is mainly responsible for making the HTTP call to the API backend.
     /// </summary>
-    public partial class ApiClient
+    public class ApiClient
     {
         private JsonSerializerSettings serializerSettings = new JsonSerializerSettings
         {
@@ -34,14 +34,18 @@ namespace ContextBrokerLibrary.Client
         /// Allows for extending request processing for <see cref="ApiClient"/> generated code.
         /// </summary>
         /// <param name="request">The RestSharp request object</param>
-        partial void InterceptRequest(IRestRequest request);
+        private void InterceptRequest(IRestRequest request)
+        {
+        }
 
         /// <summary>
         /// Allows for extending response processing for <see cref="ApiClient"/> generated code.
         /// </summary>
         /// <param name="request">The RestSharp request object</param>
         /// <param name="response">The RestSharp response object</param>
-        partial void InterceptResponse(IRestRequest request, IRestResponse response);
+        private void InterceptResponse(IRestRequest request, IRestResponse response)
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class

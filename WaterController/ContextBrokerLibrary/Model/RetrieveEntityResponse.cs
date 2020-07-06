@@ -56,39 +56,6 @@ namespace ContextBrokerLibrary.Model
             {
                 this.Id = id;
             }
-
-            // to ensure "temperature" is required (not null)
-            if (temperature == null)
-            {
-                throw new InvalidDataException(
-                    "temperature is a required property for RetrieveEntityResponse and cannot be null");
-            }
-            else
-            {
-                this.Temperature = temperature;
-            }
-
-            // to ensure "humidity" is required (not null)
-            if (humidity == null)
-            {
-                throw new InvalidDataException(
-                    "humidity is a required property for RetrieveEntityResponse and cannot be null");
-            }
-            else
-            {
-                this.Humidity = humidity;
-            }
-
-            // to ensure "location" is required (not null)
-            if (location == null)
-            {
-                throw new InvalidDataException(
-                    "location is a required property for RetrieveEntityResponse and cannot be null");
-            }
-            else
-            {
-                this.Location = location;
-            }
         }
 
         /// <summary>
