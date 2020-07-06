@@ -18,7 +18,7 @@ services:
       test: curl --fail -s http://orion:${ORION_PORT}/version || exit 1
 
   iot-agent:
-    image: fiware/iotagent-ul:${ULTRALIGHT_VERSION}
+    image: fiware/iotagent-json:${IOT_AGENT_JSON_VERSION}
     hostname: iot-agent
     container_name: fiware-iot-agent
     depends_on:
@@ -47,6 +47,24 @@ services:
       - IOTA_PROVIDER_URL=http://iot-agent:${IOTA_NORTH_PORT}
     healthcheck:
       test: curl --fail -s http://iot-agent:${IOTA_NORTH_PORT}/iot/about || exit 1
+
+  # MQTT broker
+#  mosquitto:
+#    image: eclipse-mosquitto
+#    hostname: mosquitto
+#    container_name: mosquitto
+#    networks:
+#      - default
+#    expose:
+#      - "1883"
+#      - "9001"
+#    ports:
+#      - "1883:1883"
+#      - "9001:9001"
+#    volumes:
+#      - ./mosquitto/config:/mosquitto/config
+#      - ./mosquitto/data:/mosquitto/data
+#      - ./mosquitto/log:/mosquitto/log
 
   # Database
   mongo-db:

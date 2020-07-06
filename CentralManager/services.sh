@@ -89,6 +89,7 @@ case "${command}" in
 		docker-compose --log-level ERROR -p fiware up -d --remove-orphans
 		addDatabaseIndex
 		waitForOrion
+		waitForIoTAgent
 		displayServices
 		echo -e "All services running"
 		;;

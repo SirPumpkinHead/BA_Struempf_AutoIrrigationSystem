@@ -1,6 +1,8 @@
 import paho.mqtt.client as mqtt
 
-topic: str = "/tOiOdxFTpZwezrrpCT/soil-moisture1/attrs"
+api_key: str = "tOiOdxFTpZwezrrpCT"
+device_id: str = "soil-moisture02"
+topic: str = "/" + api_key + "/" + device_id + "/attrs"
 
 
 # The callback for when the client receives a CONNACK response from the server.
@@ -23,6 +25,6 @@ client.on_message = on_message
 
 client.connect("10.0.0.22", 1883, 60)
 
-client.publish(topic, "m|210")
+client.publish(topic, "{\"m\":11}")
 
 client.disconnect()
