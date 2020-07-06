@@ -40,11 +40,10 @@ services:
       - IOTA_AUTOCAST=true # Ensure Ultralight number values are read as numbers not strings
       - IOTA_MONGO_HOST=mongo-db # The host name of MongoDB
       - IOTA_MONGO_PORT=${MONGO_DB_PORT} # The port mongoDB is listening on
-      - IOTA_MONGO_DB=iotagentul # The name of the database used in mongoDB
+      - IOTA_MONGO_DB=iotagentjson # The name of the database used in mongoDB
+      - IOTA_PROVIDER_URL=http://iot-agent:${IOTA_NORTH_PORT} # URL passed to the Context Broker when commands are registered, used as a forwarding URL location when the Context Broker issues a command to a device
       - IOTA_MQTT_HOST=${IOTA_MQTT_HOST} # The host name of the MQTT Broker
       - IOTA_MQTT_PORT=1883 # The port the MQTT Broker is listening on to receive topics
-      - IOTA_DEFAULT_RESOURCE= # Default is blank. I'm using MQTT so I don't need a resource
-      - IOTA_PROVIDER_URL=http://iot-agent:${IOTA_NORTH_PORT}
     healthcheck:
       test: curl --fail -s http://iot-agent:${IOTA_NORTH_PORT}/iot/about || exit 1
 

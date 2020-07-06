@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt
 
 api_key: str = "tOiOdxFTpZwezrrpCT"
 device_id: str = "valve01"
-topic: str = "/" + api_key + "/" + device_id + "/attrs"
+topic: str = "/" + api_key + "/" + device_id + "/cmd"
 
 
 # The callback for when the client receives a CONNACK response from the server.

@@ -39,7 +39,7 @@ addDatabaseIndex () {
 	printf "Adding appropriate \033[1mMongoDB\033[0m indexes for \033[1;36mIoT-Agent\033[0m  ..."
 	docker exec  db-mongo mongo --eval '
 	conn = new Mongo();
-	db = conn.getDB("iotagentul");
+	db = conn.getDB("iotagentjson");
 	db.createCollection("devices");
 	db.devices.createIndex({"_id.service": 1, "_id.id": 1, "_id.type": 1});
 	db.devices.createIndex({"_id.type": 1}); 

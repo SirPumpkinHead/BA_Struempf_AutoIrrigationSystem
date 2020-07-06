@@ -104,28 +104,29 @@ provisionAgent () {
 
     # Setup of actuator (valve)
     curl -iX POST \
-          "${IOT_AGENT_HOST}/iot/devices" \
-          -H 'Content-Type: application/json' \
-          -H "${SERVICE_HEADER}" \
-          -H "${SERVICE_PATH_HEADER}" \
-          -d '{
-          "devices": [
-            {
-              "device_id": "valve01",
-              "entity_name": "urn:ngsi-ld:Valve:001",
-              "entity_type": "Valve",
-              "transport": "MQTT",
-              "commands": [
-                { "name": "open", "type": "command" },
-                { "name": "close", "type": "command" }
-               ],
-               "static_attributes": [
-                 {"name":"refBed", "type": "Relationship","value": "urn:ngsi-ld:Bed:001"}
-              ]
-            }
+      "${IOT_AGENT_HOST}/iot/devices" \
+      -H 'Content-Type: application/json' \
+      -H "${SERVICE_HEADER}" \
+      -H "${SERVICE_PATH_HEADER}" \
+      -d '{
+      "devices": [
+        {
+          "device_id": "valve01",
+          "entity_name": "urn:ngsi-ld:Valve:001",
+          "entity_type": "Valve",
+          "protocol": "PDI-IoTA-UltraLight",
+          "transport": "MQTT",
+          "commands": [
+            { "name": "open", "type": "command" },
+            { "name": "close", "type": "command" }
+           ],
+           "static_attributes": [
+             {"name":"refStore", "type": "Relationship","value": "urn:ngsi-ld:Bed:001"}
           ]
         }
-        '
+      ]
+    }
+    '
 
     echo -e " \033[1;32mdone\033[0m"
 }
