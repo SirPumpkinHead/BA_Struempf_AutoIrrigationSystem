@@ -7,7 +7,7 @@ namespace ContextBrokerLibrary.Model
 
         public int? GetValue()
         {
-            return int.Parse(Value);
+            return int.TryParse(Value, out var v) ? v : 0;
         }
     }
 }

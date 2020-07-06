@@ -60,7 +60,6 @@ provisionAgent () {
                      "device_id":   "soil-moisture01",
                      "entity_name": "urn:ngsi-ld:SoilMoisture:001",
                      "entity_type": "Sensor",
-                     "protocol":    "PDI-IoTA-UltraLight",
                      "transport":   "MQTT",
                      "timezone":    "Europe/Vienna",
                      "attributes": [
@@ -74,7 +73,6 @@ provisionAgent () {
                      "device_id":   "soil-moisture02",
                      "entity_name": "urn:ngsi-ld:SoilMoisture:002",
                      "entity_type": "Sensor",
-                     "protocol":    "PDI-IoTA-UltraLight",
                      "transport":   "MQTT",
                      "timezone":    "Europe/Vienna",
                      "attributes": [
@@ -88,7 +86,6 @@ provisionAgent () {
                      "device_id":   "soil-moisture03",
                      "entity_name": "urn:ngsi-ld:SoilMoisture:003",
                      "entity_type": "Sensor",
-                     "protocol":    "PDI-IoTA-UltraLight",
                      "transport":   "MQTT",
                      "timezone":    "Europe/Vienna",
                      "attributes": [

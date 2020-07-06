@@ -1,7 +1,7 @@
 import paho.mqtt.client as mqtt
 
 api_key: str = "tOiOdxFTpZwezrrpCT"
-device_id: str = "soil-moisture02"
+device_id: str = "soil-moisture01"
 topic: str = "/" + api_key + "/" + device_id + "/attrs"
 
 
@@ -25,6 +25,6 @@ client.on_message = on_message
 
 client.connect("10.0.0.22", 1883, 60)
 
-client.publish(topic, "{\"m\":11}")
+client.publish(topic, "{\"m\":20}")
 
 client.disconnect()
