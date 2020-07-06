@@ -54,5 +54,22 @@ namespace WaterController.Controllers
                 return StatusCode(e.ErrorCode);
             }
         }
+
+        [HttpGet("command/{command}/{id}")]
+        public async Task<object> OpenValve(string id, string command)
+        {
+            try
+            {
+                await _entityService.SendCommand(id, command);
+                return Ok(command);
+            }
+            catch (ApiException e)
+            {
+                _logger.LogWarning("({errorCode}) Failed to get readings for {entityId} - {errorMessage}",
+                    e.ErrorCode, id, e.Message);
+
+                return StatusCode(e.ErrorCode);
+            }
+        }
     }
 }

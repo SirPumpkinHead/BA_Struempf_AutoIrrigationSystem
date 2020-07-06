@@ -6,7 +6,10 @@ namespace WaterController.Services
 {
     public interface IEntityService
     {
-        Task<RetrieveBedEntityResponse> GetFlowerBed(string entityId);
+        Task<RetrieveBedEntityResponse> GetFlowerBed(string bedId);
+        
         Task<List<ListEntitiesResponse>> GetMoistureLevels(string bedId);
+
+        Task SendCommand(string valveId, string command);
     }
 }

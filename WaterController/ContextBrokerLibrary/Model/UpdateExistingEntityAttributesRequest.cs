@@ -28,45 +28,9 @@ namespace ContextBrokerLibrary.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateExistingEntityAttributesRequest" /> class.
         /// </summary>
-        /// <param name="temperature">temperature (required).</param>
-        /// <param name="seatNumber">seatNumber (required).</param>
-        public UpdateExistingEntityAttributesRequest(Object temperature = default(Object),
-            Object seatNumber = default(Object))
+        public UpdateExistingEntityAttributesRequest()
         {
-            // to ensure "temperature" is required (not null)
-            if (temperature == null)
-            {
-                throw new InvalidDataException(
-                    "temperature is a required property for UpdateExistingEntityAttributesRequest and cannot be null");
-            }
-            else
-            {
-                this.Temperature = temperature;
-            }
-
-            // to ensure "seatNumber" is required (not null)
-            if (seatNumber == null)
-            {
-                throw new InvalidDataException(
-                    "seatNumber is a required property for UpdateExistingEntityAttributesRequest and cannot be null");
-            }
-            else
-            {
-                this.SeatNumber = seatNumber;
-            }
         }
-
-        /// <summary>
-        /// Gets or Sets Temperature
-        /// </summary>
-        [DataMember(Name = "temperature", EmitDefaultValue = false)]
-        public Object Temperature { get; set; }
-
-        /// <summary>
-        /// Gets or Sets SeatNumber
-        /// </summary>
-        [DataMember(Name = "seatNumber", EmitDefaultValue = false)]
-        public Object SeatNumber { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -76,8 +40,6 @@ namespace ContextBrokerLibrary.Model
         {
             var sb = new StringBuilder();
             sb.Append("class UpdateExistingEntityAttributesRequest {\n");
-            sb.Append("  Temperature: ").Append(Temperature).Append("\n");
-            sb.Append("  SeatNumber: ").Append(SeatNumber).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -111,17 +73,7 @@ namespace ContextBrokerLibrary.Model
             if (input == null)
                 return false;
 
-            return
-                (
-                    this.Temperature == input.Temperature ||
-                    (this.Temperature != null &&
-                     this.Temperature.Equals(input.Temperature))
-                ) &&
-                (
-                    this.SeatNumber == input.SeatNumber ||
-                    (this.SeatNumber != null &&
-                     this.SeatNumber.Equals(input.SeatNumber))
-                );
+            return true;
         }
 
         /// <summary>
@@ -133,10 +85,7 @@ namespace ContextBrokerLibrary.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Temperature != null)
-                    hashCode = hashCode * 59 + this.Temperature.GetHashCode();
-                if (this.SeatNumber != null)
-                    hashCode = hashCode * 59 + this.SeatNumber.GetHashCode();
+
                 return hashCode;
             }
         }
