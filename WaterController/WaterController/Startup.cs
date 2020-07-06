@@ -59,6 +59,7 @@ namespace WaterController
             services.AddControllers();
 
             services.AddTransient<IEntityService, EntityService>();
+            services.AddTransient<IValveService, ValveService>();
 
             services.AddSingleton<IEntitiesApi>(new EntitiesApi(ContextBrokerLibrary.Client.Configuration.Default));
         }
@@ -82,11 +83,19 @@ namespace WaterController
             app.UseHangfireServer();
 
             app.UseHangfireDashboard();
+
+            SetupRecurringJobs();
         }
 
         private string GetBasePath()
         {
             return Configuration.GetValue<string>("ContextBrokerPath", null);
+        }
+
+        private void SetupRecurringJobs()
+        {
+            RecurringJob.AddOrUpdate<IValveService>("CheckValveJob", s => s.OpenValveIfRequired(),
+                Configuration.GetValue("CheckValveCronExpr", "0,15,30,45 * * * *"));
         }
     }
 }
