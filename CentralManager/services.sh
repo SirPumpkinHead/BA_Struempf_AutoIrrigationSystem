@@ -86,7 +86,7 @@ case "${command}" in
 		echo -e "- \033[1;34mOrion\033[0m is the context broker"
 		echo -e "- \033[1;36mIoT-Agent\033[0m is configured for the UltraLight Protocol"
 		echo ""
-		docker-compose --log-level ERROR -p fiware up -d --remove-orphans
+		docker-compose --log-level ERROR -p fiware up --build -d --remove-orphans
 		addDatabaseIndex
 		waitForOrion
 		waitForIoTAgent

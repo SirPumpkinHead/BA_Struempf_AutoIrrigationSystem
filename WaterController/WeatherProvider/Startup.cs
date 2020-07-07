@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace WeatherProvider
 {
@@ -30,6 +32,18 @@ namespace WeatherProvider
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // simple request logging
+            app.Use(async (context, next) =>
+            {
+                var logger = context.RequestServices.GetService<ILogger<Startup>>();
+
+                logger.LogInformation("[{method}] {path}{queryString}", context.Request.Method, context.Request.Path, context.Request.QueryString);
+
+                await next.Invoke();
+
+                logger.LogDebug("[{method}] {path}", context.Response.StatusCode, context.Request.Path);
+            });
 
             app.UseHttpsRedirection();
 

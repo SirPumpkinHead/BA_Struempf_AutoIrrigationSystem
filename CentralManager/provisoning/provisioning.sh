@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Variables
 IOT_AGENT_HOST="http://localhost:4041"
-CONTEXT_BROKER_HOST="http://orion:1026"
+CONTEXT_BROKER_HOST="http://localhost:1026"
 CONTEXT_BROKER_PROVISION_HOST="http://localhost:1026"
 API_KEY="tOiOdxFTpZwezrrpCT"
 SERVICE_HEADER="fiware-service: garden"
@@ -10,8 +10,9 @@ SERVICE_PATH_HEADER="fiware-servicepath: /flowerbed"
 provisionContext () {
     printf "⏳ Provisioning context broker\n"
 
+    # Creating flower bed entity
     curl -s -X POST \
-      'http://localhost:1026/v2/op/update' \
+      "${CONTEXT_BROKER_HOST}/v2/op/update" \
       -H 'Content-Type: application/json' \
       -H "${SERVICE_HEADER}" \
       -H "${SERVICE_PATH_HEADER}" \
@@ -24,6 +25,33 @@ provisionContext () {
             "name":{"type":"Text","value":"Rose Bed"}
         }
       ]
+    }'
+
+    # Registering weather provider
+    curl -iX POST \
+      "${CONTEXT_BROKER_HOST}/v2/op/update" \
+      -H 'Content-Type: application/json' \
+      -H "${SERVICE_HEADER}" \
+      -H "${SERVICE_PATH_HEADER}" \
+      -d '{
+      "description": "Weather Conditions",
+      "dataProvided": {
+        "entities": [
+          {
+            "id": "urn:ngsi-ld:Bed:001",
+            "type": "FlowerBed"
+          }
+        ],
+        "attrs": [
+          "expRainVolume1h",
+          "expRainVolume4h"
+        ]
+      },
+      "provider": {
+        "http": {
+          "url": "http://weather-provider:3000/weatherConditions/expected/rain"
+        }
+      }
     }'
 
     echo -e " \033[1;32mdone\033[0m"
