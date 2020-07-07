@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -48,6 +49,22 @@ namespace WeatherProvider.Controllers
             var location = _locationService.GetConfiguredLocation();
 
             return await _weatherService.GetWeatherForLocation(location);
+        }
+
+        [HttpGet("expected/rain")]
+        public async Task<ExpectedRainResponse> GetForecastForLocation([FromQuery] string lon = "16.37", [FromQuery] string lat = "48.21")
+        {
+            var location = new GeoLocation
+            {
+                Coordinates = new[] {lon, lat}
+            };
+
+            var weather = await _weatherService.GetWeatherForLocation(location);
+
+            return _forecastService.CalculateExpectedRain(new Entity
+            {
+                Id = Guid.NewGuid().ToString()
+            }, weather);
         }
     }
 }

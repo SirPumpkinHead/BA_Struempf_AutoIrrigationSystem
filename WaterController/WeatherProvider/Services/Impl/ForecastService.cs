@@ -6,36 +6,47 @@ namespace WeatherProvider.Services.Impl
     {
         public ExpectedRainResponse CalculateExpectedRain(Entity requestEntity, WeatherForecast weather)
         {
-            var response = new ExpectedRainResponse
+            return new ExpectedRainResponse
             {
                 Id = requestEntity.Id,
                 Type = requestEntity.Type,
-                ExpectedRainVolume1H = new Number(),
-                ExpectedRainVolume4H = new Number(),
-                ExpectedRainVolume8H = new Number(),
-                ExpectedRainVolume1D = new Number()
+                ExpectedRainVolume1H = GetExpectedRainInHours(1, weather),
+                ExpectedRainVolume2H = GetExpectedRainInHours(2, weather),
+                ExpectedRainVolume4H = GetExpectedRainInHours(4, weather),
+                ExpectedRainVolume8H = GetExpectedRainInHours(8, weather),
+                ExpectedRainVolume16H = GetExpectedRainInHours(16, weather),
+                ExpectedRainVolume1D = GetExpectedRainInDays(1, weather),
+                ExpectedRainVolume2D = GetExpectedRainInDays(2, weather),
+                ExpectedRainVolume3D = GetExpectedRainInDays(3, weather),
+                ExpectedRainVolume4D = GetExpectedRainInDays(4, weather),
+                ExpectedRainVolume5D = GetExpectedRainInDays(5, weather),
+                ExpectedRainVolume6D = GetExpectedRainInDays(6, weather),
+                ExpectedRainVolume7D = GetExpectedRainInDays(7, weather)
             };
+        }
 
-            response.ExpectedRainVolume1H.Value = weather.Hourly[0].Rain?.The1H ?? 0;
+        private static Number GetExpectedRainInHours(int hours, WeatherForecast weather)
+        {
+            var number = new Number();
 
-            for (var i = 0; i < 4 && i < weather.Hourly.Length; i++)
+            for (var i = 0; i < hours && i < weather.Hourly.Length; i++)
             {
-                response.ExpectedRainVolume4H.Value = weather.Hourly[i].Rain?.The1H ?? 0;
+                number.Value += weather.Hourly[i].Rain?.The1H ?? 0;
             }
 
-            for (var i = 0; i < 8 && i < weather.Hourly.Length; i++)
+            return number;
+        }
+
+        private static Number GetExpectedRainInDays(int days, WeatherForecast weather)
+        {
+            var number = new Number();
+
+            for (var i = 0; i < days && i < weather.Daily.Length; i++)
             {
-                response.ExpectedRainVolume4H.Value = weather.Hourly[i].Rain?.The1H ?? 0;
+                number.Value += weather.Daily[i].Rain;
             }
 
-            response.ExpectedRainVolume1D.Value = weather.Daily[0].Rain;
-
-            for (var i = 0; i < 2 && i < weather.Daily.Length; i++)
-            {
-                response.ExpectedRainVolume2D.Value = weather.Daily[i].Rain;
-            }
-
-            return response;
+            return number;
         }
     }
 }
