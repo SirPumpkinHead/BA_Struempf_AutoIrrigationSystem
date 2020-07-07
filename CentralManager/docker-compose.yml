@@ -93,5 +93,16 @@ services:
     ports:
       - 3306:3306
 
+  # Context Provider
+  weather-provider:
+    build:
+      context: ../WaterController/WeatherProvider
+      dockerfile: Dockerfile
+    container_name: fiware-weather-provider
+    environment:
+      Logging__LogLevel__Default: "Debug"
+    ports:
+      - 3000:80
+
 volumes:
   mongo-db: ~
