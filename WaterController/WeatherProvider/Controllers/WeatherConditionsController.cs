@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -13,12 +12,14 @@ namespace WeatherProvider.Controllers
     {
         private readonly ILogger<WeatherConditionsController> _logger;
         private readonly ILocationService _locationService;
+        private readonly IWeatherService _weatherService;
 
         public WeatherConditionsController(ILogger<WeatherConditionsController> logger,
-            ILocationService locationService)
+            ILocationService locationService, IWeatherService weatherService)
         {
             _logger = logger;
             _locationService = locationService;
+            _weatherService = weatherService;
         }
 
         [HttpPost("expected/rain/op/query")]
@@ -52,6 +53,14 @@ namespace WeatherProvider.Controllers
             }
 
             return Ok(response);
+        }
+
+        [HttpGet]
+        public async Task<WeatherForecast> GetForecastForConfigLocation()
+        {
+            var location = _locationService.GetConfiguredLocation();
+
+            return await _weatherService.GetWeatherForLocation(location);
         }
     }
 }

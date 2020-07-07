@@ -101,6 +101,7 @@ services:
     container_name: fiware-weather-provider
     environment:
       Logging__LogLevel__Default: "Debug"
+      OpenWeatherApiKey: "${OPEN_WEATHER_API_KEY}"
     ports:
       - 3000:80
 

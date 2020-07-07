@@ -14,5 +14,12 @@ namespace WeatherProvider.Services
         /// <exception cref="RequestFailedException">If the request returned an error code</exception>
         /// <returns>The geo location of the given entity</returns>
         public Task<GeoLocation?> GetLocation(string entityId);
+
+        /// <summary>
+        /// Gets the configured location for getting weather data.
+        /// Default value is in the city center of Vienna (48.2082N, 16.3738E). 
+        /// </summary>
+        /// <returns></returns>
+        public GeoLocation GetConfiguredLocation();
     }
 }

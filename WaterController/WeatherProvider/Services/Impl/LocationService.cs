@@ -1,5 +1,6 @@
 #nullable enable
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using RestSharp;
 using WeatherProvider.Exceptions;
@@ -11,24 +12,18 @@ namespace WeatherProvider.Services.Impl
     {
         private readonly ILogger<LocationService> _logger;
         private readonly IHttpService _httpService;
+        private readonly IConfiguration _configuration;
 
-        public LocationService(IHttpService httpService, ILogger<LocationService> logger)
+        public LocationService(IHttpService httpService, ILogger<LocationService> logger, IConfiguration configuration)
         {
             _httpService = httpService;
             _logger = logger;
+            _configuration = configuration;
         }
 
         public async Task<GeoLocation?> GetLocation(string entityId)
         {
             _logger.LogInformation("Loading geo location for {id}", entityId);
-
-            if (entityId == "urn:ngsi-ld:Bed:001") // TODO remove this just for testing
-            {
-                return new GeoLocation
-                {
-                    Coordinates = new[] {"48.2082", "16.3738"}
-                };
-            }
 
             var client = _httpService.GetContextClient();
             var request = new RestRequest($"/v2/entities/{entityId}/attrs/location/value", Method.GET);
@@ -48,6 +43,19 @@ namespace WeatherProvider.Services.Impl
             }
 
             return response.Data;
+        }
+
+        public GeoLocation GetConfiguredLocation()
+        {
+            return new GeoLocation
+            {
+                Type = "Point",
+                Coordinates = new[]
+                {
+                    _configuration.GetValue("LocationLong", "48.2082"),
+                    _configuration.GetValue("LocationLat", "16.3738")
+                }
+            };
         }
     }
 }

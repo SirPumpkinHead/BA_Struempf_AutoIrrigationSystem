@@ -9,5 +9,7 @@ namespace WeatherProvider.Services
         /// </summary>
         /// <returns>The client</returns>
         public IRestClient GetContextClient();
+
+        public RestClient GetWeatherClient();
     }
 }

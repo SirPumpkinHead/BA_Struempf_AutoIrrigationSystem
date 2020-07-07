@@ -24,5 +24,17 @@ namespace WeatherProvider.Services.Impl
 
             return client;
         }
+
+        public RestClient GetWeatherClient()
+        {
+            var apiKey = _configuration.GetValue<string>("OpenWeatherApiKey");
+            var basePath = _configuration.GetValue("OpenWeatherBasePath", "https://api.openweathermap.org");
+
+            var client = new RestClient(basePath);
+
+            client.AddDefaultQueryParameter("appid", apiKey);
+
+            return client;
+        }
     }
 }
