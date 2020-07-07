@@ -51,7 +51,7 @@ services:
   #  mosquitto:
   #    image: eclipse-mosquitto
   #    hostname: mosquitto
-  #    container_name: mosquitto
+  #    container_name: fiware-mosquitto
   #    networks:
   #      - default
   #    expose:
@@ -69,7 +69,7 @@ services:
   mongo-db:
     image: mongo:${MONGO_DB_VERSION}
     hostname: mongo-db
-    container_name: db-mongo
+    container_name: fiware-db-mongo
     expose:
       - "${MONGO_DB_PORT}"
     ports:
@@ -83,6 +83,7 @@ services:
   mysql-db:
     image: mysql:5.7
     restart: always
+    container_name: fiware-db-mysql
     environment:
       MYSQL_ROOT_PASSWORD: L7qsXhqgkXne2jJxzp8T
       MYSQL_DATABASE: hangfire

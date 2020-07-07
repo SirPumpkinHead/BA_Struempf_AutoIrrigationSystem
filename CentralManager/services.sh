@@ -19,7 +19,7 @@ stoppingContainers () {
 
 addDatabaseIndex () {
 	printf "Adding appropriate \033[1mMongoDB\033[0m indexes for \033[1;34mOrion\033[0m  ..."
-	docker exec  db-mongo mongo --eval '
+	docker exec  fiware-db-mongo mongo --eval '
 	conn = new Mongo();db.createCollection("orion");
 	db = conn.getDB("orion");
 	db.createCollection("entities");
@@ -27,7 +27,7 @@ addDatabaseIndex () {
 	db.entities.createIndex({"_id.type": 1}); 
 	db.entities.createIndex({"_id.id": 1});' > /dev/null
 
-	docker exec  db-mongo mongo --eval '
+	docker exec  fiware-db-mongo mongo --eval '
 	conn = new Mongo();db.createCollection("orion-openiot");
 	db = conn.getDB("orion-openiot");
 	db.createCollection("entities");
@@ -37,7 +37,7 @@ addDatabaseIndex () {
 	echo -e " \033[1;32mdone\033[0m"
 
 	printf "Adding appropriate \033[1mMongoDB\033[0m indexes for \033[1;36mIoT-Agent\033[0m  ..."
-	docker exec  db-mongo mongo --eval '
+	docker exec  fiware-db-mongo mongo --eval '
 	conn = new Mongo();
 	db = conn.getDB("iotagentjson");
 	db.createCollection("devices");
