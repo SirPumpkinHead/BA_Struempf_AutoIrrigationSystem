@@ -10,6 +10,8 @@ namespace WeatherProvider.Models
 
         [JsonPropertyName("attrs")]
         public List<string> Attributes { get; set; }
+
+        public string Test { get; set; }
     }
 
     public class Entity

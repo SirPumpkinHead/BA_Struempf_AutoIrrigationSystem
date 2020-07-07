@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using WeatherProvider.Services;
+using WeatherProvider.Services.Impl;
 
 namespace WeatherProvider
 {
@@ -22,6 +24,9 @@ namespace WeatherProvider
         {
             services.AddControllers();
 
+            services.AddTransient<IHttpService, HttpService>();
+            services.AddTransient<ILocationService, LocationService>();
+
             services.AddHealthChecks();
         }
 
@@ -38,7 +43,8 @@ namespace WeatherProvider
             {
                 var logger = context.RequestServices.GetService<ILogger<Startup>>();
 
-                logger.LogInformation("[{method}] {path}{queryString}", context.Request.Method, context.Request.Path, context.Request.QueryString);
+                logger.LogInformation("[{method}] {path}{queryString}", context.Request.Method, context.Request.Path,
+                    context.Request.QueryString);
 
                 await next.Invoke();
 
