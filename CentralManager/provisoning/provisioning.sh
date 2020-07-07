@@ -8,6 +8,7 @@ SERVICE_HEADER="fiware-service: garden"
 SERVICE_PATH_HEADER="fiware-servicepath: /flowerbed"
 
 provisionContext () {
+    echo ""
     printf "⏳ Provisioning context broker\n"
 
     # Creating flower bed entity
@@ -29,7 +30,7 @@ provisionContext () {
 
     # Registering weather provider
     curl -iX POST \
-      "${CONTEXT_BROKER_HOST}/v2/op/update" \
+      "${CONTEXT_BROKER_HOST}/v2/registrations" \
       -H 'Content-Type: application/json' \
       -H "${SERVICE_HEADER}" \
       -H "${SERVICE_PATH_HEADER}" \
@@ -49,7 +50,7 @@ provisionContext () {
       },
       "provider": {
         "http": {
-          "url": "http://weather-provider:3000/weatherConditions/expected/rain"
+          "url": "http://weather-provider/weatherConditions/expected/rain"
         }
       }
     }'
@@ -58,6 +59,7 @@ provisionContext () {
 }
 # Setting up IoT Agent (middleware)
 provisionAgent () {
+    echo ""
     printf "⏳ Provisioning IoT agent\n"
 
     # Setup of service group

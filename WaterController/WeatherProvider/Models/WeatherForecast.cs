@@ -1,6 +1,6 @@
 using System;
 
-namespace WeatherProvider
+namespace WeatherProvider.Models
 {
     public class WeatherForecast
     {
