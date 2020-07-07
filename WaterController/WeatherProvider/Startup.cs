@@ -27,6 +27,7 @@ namespace WeatherProvider
             services.AddTransient<IHttpService, HttpService>();
             services.AddTransient<ILocationService, LocationService>();
             services.AddTransient<IWeatherService, WeatherService>();
+            services.AddTransient<IForecastService, ForecastService>();
 
             services.AddHealthChecks();
         }

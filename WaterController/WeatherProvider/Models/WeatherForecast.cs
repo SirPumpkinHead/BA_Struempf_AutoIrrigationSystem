@@ -71,13 +71,13 @@ namespace WeatherProvider.Models
         public Weather[] Weather { get; set; }
 
         [JsonProperty("rain")]
-        public Rain Rain { get; set; }
+        public Rain Rain { get; set; } = new Rain {The1H = 0};
     }
 
     public class Rain
     {
         [JsonProperty("1h")]
-        public double The1H { get; set; }
+        public double The1H { get; set; } = 0;
     }
 
     public class Weather
@@ -137,7 +137,7 @@ namespace WeatherProvider.Models
         public double Uvi { get; set; }
 
         [JsonProperty("rain", NullValueHandling = NullValueHandling.Ignore)]
-        public double Rain { get; set; }
+        public double Rain { get; set; } = 0;
     }
 
     public class Temp
@@ -192,6 +192,9 @@ namespace WeatherProvider.Models
 
         [JsonProperty("weather")]
         public Weather[] Weather { get; set; }
+
+        [JsonProperty("rain")]
+        public Rain Rain { get; set; } = new Rain {The1H = 0};
     }
 
     public class FeelsLike

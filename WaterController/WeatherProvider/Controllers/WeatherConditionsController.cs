@@ -13,49 +13,36 @@ namespace WeatherProvider.Controllers
         private readonly ILogger<WeatherConditionsController> _logger;
         private readonly ILocationService _locationService;
         private readonly IWeatherService _weatherService;
+        private readonly IForecastService _forecastService;
 
         public WeatherConditionsController(ILogger<WeatherConditionsController> logger,
-            ILocationService locationService, IWeatherService weatherService)
+            ILocationService locationService, IWeatherService weatherService, IForecastService forecastService)
         {
             _logger = logger;
             _locationService = locationService;
             _weatherService = weatherService;
+            _forecastService = forecastService;
         }
 
         [HttpPost("expected/rain/op/query")]
-        public async Task<object> ExpectedRain(ExpectedRainRequest request)
+        public async Task<List<ExpectedRainResponse>> ExpectedRain(ExpectedRainRequest request)
         {
             var response = new List<ExpectedRainResponse>();
+            var location = _locationService.GetConfiguredLocation();
+            var weather = await _weatherService.GetWeatherForLocation(location);
 
             _logger.LogDebug("Request: {request}", JsonConvert.SerializeObject(request));
 
             foreach (var requestEntity in request.Entities)
             {
                 _logger.LogInformation("Requesting rain for {id}", requestEntity.Id);
-                response.Add(new ExpectedRainResponse
-                {
-                    Id = requestEntity.Id,
-                    Type = requestEntity.Type,
-                    ExpectedRainVolume1H = new Number
-                    {
-                        Value = 100
-                    },
-                    ExpectedRainVolume4H = new Number
-                    {
-                        Value = 200
-                    }
-                });
-
-                var location = await _locationService.GetLocation(requestEntity.Id);
-
-                _logger.LogInformation("Location for {id} is {@location}", requestEntity.Id,
-                    location?.Coordinates ?? new[] {"-1", "-1"});
+                response.Add(_forecastService.CalculateExpectedRain(requestEntity, weather));
             }
 
-            return Ok(response);
+            return response;
         }
 
-        [HttpGet]
+        [HttpGet("complete")]
         public async Task<WeatherForecast> GetForecastForConfigLocation()
         {
             var location = _locationService.GetConfiguredLocation();
