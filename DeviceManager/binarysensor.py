@@ -23,7 +23,7 @@ class BinarySensor:
         GPIO.cleanup()
 
     def activate(self):
-        print("Activating sensor")
+        print("Activating sensor (GPIO " + str(self._vcc_channel) + ")")
         GPIO.output(self._vcc_channel, GPIO.HIGH)
         time.sleep(0.1)
 
@@ -33,4 +33,5 @@ class BinarySensor:
         time.sleep(0.1)
 
     def read(self):
+        print("Reading from sensor (GPIO " + str(self._read_channel) + ")")
         return GPIO.input(self._read_channel)
