@@ -12,7 +12,7 @@ class Program:
     _relais = None
 
     def __init__(self):
-        self._relais = Relais(3)
+        self._relais = Relais(14)
 
     def __del__(self):
         del self._relais
