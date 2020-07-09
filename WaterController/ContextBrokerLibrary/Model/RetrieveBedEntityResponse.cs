@@ -61,6 +61,42 @@ namespace ContextBrokerLibrary.Model
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public Text Name { get; set; }
 
+        [DataMember(Name ="expRainVolume1h", EmitDefaultValue = true)]
+        public Number ExpRainVolume1H { get; set; }
+
+        [JsonProperty("expRainVolume2h")]
+        public Number ExpRainVolume2H { get; set; }
+
+        [JsonProperty("expRainVolume4h")]
+        public Number ExpRainVolume4H { get; set; }
+
+        [JsonProperty("expRainVolume8h")]
+        public Number ExpRainVolume8H { get; set; }
+
+        [JsonProperty("expRainVolume16h")]
+        public Number ExpRainVolume16H { get; set; }
+
+        [JsonProperty("expRainVolume1d")]
+        public Number ExpRainVolume1D { get; set; }
+
+        [JsonProperty("expRainVolume2d")]
+        public Number ExpRainVolume2D { get; set; }
+
+        [JsonProperty("expRainVolume3d")]
+        public Number ExpRainVolume3D { get; set; }
+
+        [JsonProperty("expRainVolume4d")]
+        public Number ExpRainVolume4D { get; set; }
+
+        [JsonProperty("expRainVolume5d")]
+        public Number ExpRainVolume5D { get; set; }
+
+        [JsonProperty("expRainVolume6d")]
+        public Number ExpRainVolume6D { get; set; }
+
+        [JsonProperty("expRainVolume7d")]
+        public Number ExpRainVolume7D { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
