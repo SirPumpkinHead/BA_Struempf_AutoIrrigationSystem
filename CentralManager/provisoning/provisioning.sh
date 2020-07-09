@@ -73,7 +73,7 @@ provisionAgent () {
            {
              \"apikey\":      \"${API_KEY}\",
              \"entity_type\": \"Thing\",
-             \"resource\":    \"\"
+             \"resource\":    \"/iot/json\"
            }
          ]
         }"
@@ -93,7 +93,7 @@ provisionAgent () {
                      "transport":   "MQTT",
                      "timezone":    "Europe/Vienna",
                      "attributes": [
-                       { "object_id": "m", "name": "moisture", "type": "Integer" }
+                       { "object_id": "s", "name": "sufficientMoisture", "type": "String" }
                      ],
                      "static_attributes": [
                        { "name":"refBed", "type": "Relationship", "value": "urn:ngsi-ld:Bed:001"}
@@ -106,20 +106,7 @@ provisionAgent () {
                      "transport":   "MQTT",
                      "timezone":    "Europe/Vienna",
                      "attributes": [
-                       { "object_id": "m", "name": "moisture", "type": "Integer" }
-                     ],
-                     "static_attributes": [
-                       { "name":"refBed", "type": "Relationship", "value": "urn:ngsi-ld:Bed:001"}
-                     ]
-                   },
-                   {
-                     "device_id":   "soil-moisture03",
-                     "entity_name": "urn:ngsi-ld:SoilMoisture:003",
-                     "entity_type": "Sensor",
-                     "transport":   "MQTT",
-                     "timezone":    "Europe/Vienna",
-                     "attributes": [
-                       { "object_id": "m", "name": "moisture", "type": "Integer" }
+                       { "object_id": "s", "name": "sufficientMoisture", "type": "String" }
                      ],
                      "static_attributes": [
                        { "name":"refBed", "type": "Relationship", "value": "urn:ngsi-ld:Bed:001"}

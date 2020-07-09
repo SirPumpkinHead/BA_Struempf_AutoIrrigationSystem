@@ -1,7 +1,7 @@
 import paho.mqtt.client as mqtt
 
 api_key: str = "tOiOdxFTpZwezrrpCT"
-device_id: str = "soil-moisture01"
+device_id: str = "soil-moisture02"
 topic: str = "/" + api_key + "/" + device_id + "/attrs"
 
 

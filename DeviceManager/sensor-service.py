@@ -1,3 +1,4 @@
+import json
 import signal
 import time
 
@@ -18,9 +19,16 @@ def get_topic(device_id):
     return "/" + API_KEY + "/" + device_id + "/attrs"
 
 
-def publish_value(_mqtt_client, device_id, value):
-    print("Publishing value '" + str(value) + "' for device " + device_id)
-    _mqtt_client.publish(get_topic(device_id), "{\"m\":" + str(value) + "}")
+def publish_value(_mqtt_client, device_id, value: dict):
+    print("Publishing value '" + str(json.dumps(value)) + "' for device " + device_id)
+    _mqtt_client.publish(get_topic(device_id), json.dumps(value))
+
+
+def get_text_from_sensor_value(value):
+    if value == 1:
+        return "not_sufficient"
+    else:
+        return "sufficient"
 
 
 class Program:
@@ -50,12 +58,12 @@ class Program:
             time.sleep(1)
 
             value = self._sensor1.read()
-            publish_value(self._mqtt_client, "soil-moisture01", value)
+            publish_value(self._mqtt_client, "soil-moisture01", {"s": get_text_from_sensor_value(value)})
 
             time.sleep(0.5)
 
             value = self._sensor2.read()
-            publish_value(self._mqtt_client, "soil-moisture02", value)
+            publish_value(self._mqtt_client, "soil-moisture02", {"s": get_text_from_sensor_value(value)})
 
             time.sleep(0.5)
 
