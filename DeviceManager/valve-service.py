@@ -1,3 +1,4 @@
+import json
 import signal
 import time
 
@@ -12,6 +13,8 @@ MQTT_HOST: str = "10.0.0.22"
 MQTT_PORT: int = 1883
 API_KEY: str = "tOiOdxFTpZwezrrpCT"
 VALVE_ID: str = "valve01"
+
+relais = Relais(14)
 
 
 def get_topic(device_id):
@@ -30,7 +33,18 @@ def on_connect(client, userdata, flags, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    print(msg.topic + " " + str(msg.payload))
+    print("Payload " + str(msg.payload))
+
+    command: dict = json.loads(msg.payload)
+
+    if "open" in command:
+        print("Opening valve")
+        relais.activate()
+    elif "close" in command:
+        print("Closing valve")
+        relais.deactivate()
+    else:
+        print("Unknown command")
 
 
 class Program:
@@ -73,5 +87,9 @@ signal.signal(signal.SIGTERM, sigterm_handler)
 signal.signal(signal.SIGINT, sigterm_handler)
 
 program.run()
+
+relais.deactivate()
+
+del relais
 
 print("[end of program]")
