@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using ContextBrokerLibrary.Api;
 using Hangfire;
 using Hangfire.MySql.Core;
@@ -7,6 +8,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using MySql.Data.MySqlClient;
 using WaterController.Services;
 using WaterController.Services.Impl;
 
@@ -40,13 +43,36 @@ namespace WaterController
                     .UseSimpleAssemblyNameTypeSerializer()
                     .UseRecommendedSerializerSettings();
 
-                configuration.UseStorage(new MySqlStorage(
-                    hangfireConnectionString,
-                    new MySqlStorageOptions
+                var retryCount = 0;
+
+
+                while (true)
+                {
+                    try
                     {
-                        TablePrefix = "Hangfire"
+                        configuration.UseStorage(new MySqlStorage(
+                            hangfireConnectionString,
+                            new MySqlStorageOptions
+                            {
+                                TablePrefix = "Hangfire"
+                            }
+                        ));
+                        break;
                     }
-                ));
+                    catch (MySqlException e)
+                    {
+                        Console.WriteLine($"Hangfire database connection failed ({e.Message}) - retry {retryCount}");
+
+                        retryCount++;
+
+                        if (retryCount == 10)
+                        {
+                            throw;
+                        }
+                    }
+
+                    Task.Delay(2500).Wait();
+                }
             });
 
             // Setting default headers for all requests to context broker
@@ -62,6 +88,8 @@ namespace WaterController
             services.AddTransient<IValveService, ValveService>();
 
             services.AddSingleton<IEntitiesApi>(new EntitiesApi(ContextBrokerLibrary.Client.Configuration.Default));
+
+            services.AddHealthChecks();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,7 +106,11 @@ namespace WaterController
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health");
+            });
 
             app.UseHangfireServer();
 

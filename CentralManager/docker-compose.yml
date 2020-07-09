@@ -105,5 +105,19 @@ services:
     ports:
       - 3000:80
 
+  # Controller unit
+  water-controller:
+    build:
+      context: ../WaterController
+      dockerfile: Dockerfile_WaterController
+    container_name: fiware-water-controller
+    depends_on:
+      - mysql-db
+    environment:
+      Logging__LogLevel__Default: "Debug"
+      ConnectionStrings__HangfireDb: "Server=mysql-db;port=3306;database=hangfire;uid=user;pwd=imGQ2gMzthcT;Allow User Variables=True"
+    ports:
+      - 5000:80
+
 volumes:
   mongo-db: ~
