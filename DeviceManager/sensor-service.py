@@ -99,7 +99,7 @@ program = Program()
 
 
 def sigterm_handler(_signo, _stack_frame):
-    print("\nStopping program")
+    print("\nGot signal " + str(_signo))
     program.stop()
 
 
