@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 using WaterController.Services;
 using WaterController.Services.Impl;
@@ -127,7 +126,7 @@ namespace WaterController
         private void SetupRecurringJobs()
         {
             RecurringJob.AddOrUpdate<IValveService>("CheckValveJob", s => s.OpenValveIfRequired(),
-                Configuration.GetValue("CheckValveCronExpr", "0,15,30,45 * * * *"));
+                Configuration.GetValue("CheckValveCronExpr", "0,30 * * * *"));
         }
     }
 }
