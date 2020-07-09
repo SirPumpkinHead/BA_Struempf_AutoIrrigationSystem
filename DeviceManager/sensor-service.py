@@ -1,5 +1,6 @@
 import json
 import signal
+import sys
 import time
 
 import paho.mqtt.client as mqtt
@@ -12,7 +13,14 @@ except ImportError:
 MQTT_HOST: str = "10.0.0.22"
 MQTT_PORT: int = 1883
 API_KEY: str = "tOiOdxFTpZwezrrpCT"
-READ_EVERY_MINUTES: int = 15
+SENSOR_READ_INTERVAL: float = 15
+
+# checking for program arguments specifying sensor read interval
+if len(sys.argv) > 1:
+    try:
+        SENSOR_READ_INTERVAL = int(sys.argv[1])
+    except ValueError:
+        SENSOR_READ_INTERVAL = float(sys.argv[1])
 
 
 def get_topic(device_id):
@@ -75,7 +83,7 @@ class Program:
             self._mqtt_client.disconnect()
 
             seconds_asleep = 0
-            while seconds_asleep < READ_EVERY_MINUTES * 60:
+            while seconds_asleep < SENSOR_READ_INTERVAL * 60:
                 seconds_asleep += 1
                 time.sleep(1)
                 if not self._running:
@@ -98,6 +106,8 @@ def sigterm_handler(_signo, _stack_frame):
 print("Registering signal handler")
 signal.signal(signal.SIGTERM, sigterm_handler)
 signal.signal(signal.SIGINT, sigterm_handler)
+
+print("Reading sensor values every " + str(SENSOR_READ_INTERVAL) + " minutes")
 
 program.run()
 
