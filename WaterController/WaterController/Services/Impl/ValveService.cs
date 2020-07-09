@@ -25,7 +25,7 @@ namespace WaterController.Services.Impl
             _logger.LogInformation("Checking if vale should be opened...");
 
             var levels = (await _entityService.GetMoistureLevels(BedId))
-                .Select(l => l.Moisture.GetValue())
+                .Select(l => l.SufficientSufficientMoisture?.Value)
                 .ToList();
 
             _logger.LogDebug("Got [{@levels}] moisture levels", levels);

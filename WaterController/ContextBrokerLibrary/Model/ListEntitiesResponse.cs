@@ -29,8 +29,8 @@ namespace ContextBrokerLibrary.Model
         /// </summary>
         /// <param name="type">type (required).</param>
         /// <param name="id">id (required).</param>
-        /// <param name="moisture"></param>
-        public ListEntitiesResponse(string type = default, string id = default, Moisture moisture = default)
+        /// <param name="sufficientSufficientMoisture"></param>
+        public ListEntitiesResponse(string type = default, string id = default, SufficientMoisture sufficientSufficientMoisture = default)
         {
             // to ensure "type" is required (not null)
 
@@ -42,7 +42,7 @@ namespace ContextBrokerLibrary.Model
             Id = id ?? throw new InvalidDataException(
                 "id is a required property for ListEntitiesResponse and cannot be null");
 
-            Moisture = moisture;
+            SufficientSufficientMoisture = sufficientSufficientMoisture;
         }
 
         /// <summary>
@@ -57,8 +57,8 @@ namespace ContextBrokerLibrary.Model
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
-        [DataMember(Name = "moisture", EmitDefaultValue = false)]
-        public Moisture Moisture { get; set; }
+        [DataMember(Name = "sufficientMoisture", EmitDefaultValue = false)]
+        public SufficientMoisture SufficientSufficientMoisture { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -70,7 +70,7 @@ namespace ContextBrokerLibrary.Model
             sb.Append("class ListEntitiesResponse {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Moisture: ").Append(Moisture).Append("\n");
+            sb.Append("  Moisture: ").Append(SufficientSufficientMoisture).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
