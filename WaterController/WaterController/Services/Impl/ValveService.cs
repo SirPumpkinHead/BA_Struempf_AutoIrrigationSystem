@@ -26,7 +26,7 @@ namespace WaterController.Services.Impl
             _entityService = entityService;
         }
 
-        public async Task OpenValveIfRequired()
+        public async Task<string> OpenValveIfRequired()
         {
             _logger.LogInformation("Checking if vale should be opened...");
 
@@ -36,50 +36,54 @@ namespace WaterController.Services.Impl
 
             _logger.LogDebug("Got [{@levels}] moisture levels", levels);
 
+            string msg;
             if (!levels.Contains("not_sufficient"))
             {
-                _logger.LogInformation("Flower bed {id} is sufficiently watered", BedId);
-                return;
+                msg = $"Flower bed {BedId} is sufficiently watered";
+                _logger.LogInformation(msg);
+                return msg;
             }
 
             var flowerBed = await _entityService.GetFlowerBed(BedId);
 
             if (flowerBed.ExpRainVolume1H.Value > MinimumRainIn1H)
             {
-                _logger.LogInformation("Expecting {volume} rain in 1 hour - not watering",
-                    flowerBed.ExpRainVolume1H.Value);
-                return;
+                msg = $"Expecting {flowerBed.ExpRainVolume1H.Value} rain in 1 hour - not watering";
+                _logger.LogInformation(msg);
+                return msg;
             }
 
             if (flowerBed.ExpRainVolume2H.Value > MinimumRainIn2H)
             {
-                _logger.LogInformation("Expecting {volume} rain in 2 hours - not watering",
-                    flowerBed.ExpRainVolume2H.Value);
-                return;
+                msg = $"Expecting {flowerBed.ExpRainVolume2H.Value} rain in 2 hours - not watering";
+                _logger.LogInformation(msg);
+                return msg;
             }
 
             if (flowerBed.ExpRainVolume1D.Value < MinimumRainIn1D)
             {
-                _logger.LogInformation("Expecting {volume} rain in 1 day - watering for 15 min",
-                    flowerBed.ExpRainVolume1D.Value);
+                msg = $"Expecting {flowerBed.ExpRainVolume1D.Value} rain in 1 day - watering for 15 min";
+                _logger.LogInformation(msg);
 
                 await _entityService.SendCommand(ValveId, "open");
 
                 BackgroundJob.Schedule<IEntityService>(s => s.SendCommand(ValveId, "close"), TimeSpan.FromMinutes(15));
-                return;
+                return msg;
             }
 
             if (flowerBed.ExpRainVolume2D.Value < MinimumRainIn2D)
             {
-                _logger.LogInformation("Expecting {volume} rain in 2 days - watering for 25 min",
-                    flowerBed.ExpRainVolume2D.Value);
+                msg = $"Expecting {flowerBed.ExpRainVolume2D.Value} rain in 2 days - watering for 25 min";
+                _logger.LogInformation(msg);
 
                 await _entityService.SendCommand(ValveId, "open");
 
                 BackgroundJob.Schedule<IEntityService>(s => s.SendCommand(ValveId, "close"), TimeSpan.FromMinutes(25));
             }
 
-            _logger.LogInformation("No action taken.");
+            msg = "No action taken.";
+            _logger.LogInformation(msg);
+            return msg;
         }
     }
 }

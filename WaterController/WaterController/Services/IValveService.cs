@@ -4,6 +4,6 @@ namespace WaterController.Services
 {
     public interface IValveService
     {
-        public Task OpenValveIfRequired();
+        public Task<string> OpenValveIfRequired();
     }
 }
