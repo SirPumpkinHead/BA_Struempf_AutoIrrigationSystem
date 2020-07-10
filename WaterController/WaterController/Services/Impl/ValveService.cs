@@ -48,21 +48,21 @@ namespace WaterController.Services.Impl
 
             if (flowerBed.ExpRainVolume1H.Value > MinimumRainIn1H)
             {
-                msg = $"Expecting {flowerBed.ExpRainVolume1H.Value} rain in 1 hour - not watering";
+                msg = $"Expecting {flowerBed.ExpRainVolume1H.Value} mm rain in 1 hour - not watering";
                 _logger.LogInformation(msg);
                 return msg;
             }
 
             if (flowerBed.ExpRainVolume2H.Value > MinimumRainIn2H)
             {
-                msg = $"Expecting {flowerBed.ExpRainVolume2H.Value} rain in 2 hours - not watering";
+                msg = $"Expecting {flowerBed.ExpRainVolume2H.Value} mm rain in 2 hours - not watering";
                 _logger.LogInformation(msg);
                 return msg;
             }
 
             if (flowerBed.ExpRainVolume1D.Value < MinimumRainIn1D)
             {
-                msg = $"Expecting {flowerBed.ExpRainVolume1D.Value} rain in 1 day - watering for 15 min";
+                msg = $"Expecting {flowerBed.ExpRainVolume1D.Value} mm rain in 1 day - watering for 15 min";
                 _logger.LogInformation(msg);
 
                 await _entityService.SendCommand(ValveId, "open");
@@ -73,7 +73,7 @@ namespace WaterController.Services.Impl
 
             if (flowerBed.ExpRainVolume2D.Value < MinimumRainIn2D)
             {
-                msg = $"Expecting {flowerBed.ExpRainVolume2D.Value} rain in 2 days - watering for 25 min";
+                msg = $"Expecting {flowerBed.ExpRainVolume2D.Value} mm rain in 2 days - watering for 25 min";
                 _logger.LogInformation(msg);
 
                 await _entityService.SendCommand(ValveId, "open");
