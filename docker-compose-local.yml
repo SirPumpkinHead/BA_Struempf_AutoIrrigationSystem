@@ -96,7 +96,7 @@ services:
 
   # Context Provider
   weather-provider:
-    image: docker.pkg.github.com/sirpumpkinhead/ba_struempf_weatherprovider/weather-provider:latest
+    image: konstantinstruempf/ba_struempf_weatherprovider:latest
     container_name: fiware-weather-provider
     environment:
       Logging__LogLevel__Default: "Debug"
@@ -109,7 +109,7 @@ services:
 
   # Controller unit
   water-controller:
-    image: docker.pkg.github.com/sirpumpkinhead/ba_struempf_watercontroller/water-controller:latest
+    image: konstantinstruempf/ba_struempf_watercontroller:latest
     container_name: fiware-water-controller
     depends_on:
       - mysql-db
@@ -124,13 +124,13 @@ services:
 
   # Fake devices
   fake-sensor:
-    image: docker.pkg.github.com/sirpumpkinhead/ba_struempf_fakedevices/fake-sensor:latest
+    image: konstantinstruempf/ba_struempf_fake-sensor:latest
     container_name: fiware-fake-sensors
     depends_on:
       - mosquitto
 
   fake-valve:
-    image: docker.pkg.github.com/sirpumpkinhead/ba_struempf_fakedevices/fake-valve:latest
+    image: konstantinstruempf/ba_struempf_fake-valve:latest
     container_name: fiware-fake-valve
     depends_on:
       - mosquitto
