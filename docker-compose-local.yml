@@ -122,5 +122,18 @@ services:
     ports:
       - 5000:80
 
+  # Fake devices
+  fake-sensor:
+    image: docker.pkg.github.com/sirpumpkinhead/ba_struempf_fakedevices/fake-sensor:latest
+    container_name: fiware-fake-sensors
+    depends_on:
+      - mosquitto
+
+  fake-valve:
+    image: docker.pkg.github.com/sirpumpkinhead/ba_struempf_fakedevices/fake-valve:latest
+    container_name: fiware-fake-valve
+    depends_on:
+      - mosquitto
+
 volumes:
   mongo-db: ~
