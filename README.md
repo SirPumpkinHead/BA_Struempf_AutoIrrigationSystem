@@ -14,10 +14,13 @@ This will add a [Mosquitto](https://mosquitto.org) message broker and add a serv
 For shutting down the system run:
 `./scripts.sh stop-local`
 
-The startup scripts requires the following programs: `docker`, `docker-compose`, `curl`
+The startup script requires the following programs: `docker`, `docker-compose`, `curl`
 
 ## Water Controller
 WaterController was part of this repo, but moved to https://github.com/SirPumpkinHead/BA_Struempf_WaterController
 
 ## Weather Controller
 WeatherController was part of this repo, but moved to https://github.com/SirPumpkinHead/BA_Struempf_WeatherProvider
+
+## Fake Devices
+The source code for the fake devices can be found here https://github.com/SirPumpkinHead/BA_Struempf_FakeDevices
