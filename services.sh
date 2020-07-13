@@ -17,6 +17,11 @@ stoppingContainers () {
 	docker-compose --log-level ERROR -p fiware down -v --remove-orphans
 }
 
+stoppingContainersLocal () {
+	echo "Stopping containers (local)"
+	docker-compose -f docker-compose-local.yml --log-level ERROR -p fiware down -v --remove-orphans
+}
+
 addDatabaseIndex () {
 	printf "Adding appropriate \033[1mMongoDB\033[0m indexes for \033[1;34mOrion\033[0m  ..."
 	docker exec  fiware-db-mongo mongo --eval '
@@ -82,9 +87,7 @@ case "${command}" in
         ;;
     "start")
 		stoppingContainers
-		echo -e "Starting four containers \033[1;34mOrion\033[0m, \033[1;36mIoT-Agent\033[0m and a \033[1mMongoDB\033[0m database."
-		echo -e "- \033[1;34mOrion\033[0m is the context broker"
-		echo -e "- \033[1;36mIoT-Agent\033[0m is configured for the UltraLight Protocol"
+		echo -e "Starting containers \033[1mWaterControllerDB\033[0m,  \033[1mWeatherController\033[0m,  \033[1;34mOrion\033[0m, \033[1;36mIoT-Agent\033[0m, \033[1mMongoDB\033[0m database \033[1mMySQL\033[0m database"
 		echo ""
 		docker-compose --log-level ERROR -p fiware up --build -d --remove-orphans
 		addDatabaseIndex
@@ -92,8 +95,26 @@ case "${command}" in
 		waitForIoTAgent
 		displayServices
 		echo -e "All services running"
+		./provisoning-scripts/provisioning.sh
+		;;
+    "start-local")
+		stoppingContainersLocal
+		echo -e "Starting containers \033[1mWaterControllerDB\033[0m, \033[1mMosquitto\033[0m, \033[1mFakeDevice\033[0m, \033[1mWeatherController\033[0m,  \033[1;34mOrion\033[0m, \033[1;36mIoT-Agent\033[0m, \033[1mMongoDB\033[0m database \033[1mMySQL\033[0m database"
+		echo ""
+		docker-compose -f docker-compose-local.yml --log-level ERROR -p fiware up --build -d --remove-orphans
+		addDatabaseIndex
+		waitForOrion
+		waitForIoTAgent
+		displayServices
+		echo -e "All services running"
+		echo -e "Provisioning services"
+		./provisoning-scripts/provisioning.sh
+		echo -e "System ready to use locally"
 		;;
 	"stop")
+		stoppingContainers
+		;;
+	"stop-local")
 		stoppingContainers
 		;;
 	"create")
@@ -102,10 +123,7 @@ case "${command}" in
 		;;
 	*)
 		echo "Command not Found."
-		echo "usage: services [create|start|stop]"
+		echo "usage: services [create|start|stop|start-local|stop-local]"
 		exit 127;
 		;;
 esac
-
-
-
