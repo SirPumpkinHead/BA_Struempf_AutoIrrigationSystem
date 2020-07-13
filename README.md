@@ -4,7 +4,7 @@ This repository contains scripts for deploying an automatic irrigation system de
 
 ## How to use (Instructions)
 
-Before starting the service a .env file is required inorder to configure the system.
+Before starting the service a .env file is required in order to configure the system.
 A template is provided in `.env-tmpl`.
 
 For locally running the system on your workstation without deploying sensors run: 
