@@ -1,6 +1,6 @@
 # AutoIrrigationSystem
 
-This repo contains scripts for deploying an automatic irrigation system developed as par of a bachelor thesis.
+This repository contains scripts for deploying an automatic irrigation system developed as part of a bachelor thesis.
 
 ## How to use (Instructions)
 
